@@ -1,0 +1,10 @@
+{
+  "id": "romeo-and-juliet",
+  "title": "Romeo & Juliet",
+  "director": "J. J. Abrams",
+  "actors": "Robert Downey Jr., Miss Piggy",
+  "showTimes": "April 1st (night 1)",
+  "description": "A Retro 60's sci-fi take on Shakespeare's classic.",
+  "imageUrl": "api/plays/romeo-and-juliet/image.jpg",
+  "rank": 3
+}
