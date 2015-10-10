@@ -1,4 +1,4 @@
 # statler
 The beginnings of awesome
 
-We're underway!
+*We're underway!*
