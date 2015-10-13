@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Our apps:
+    'statler_api',
+    'statler_site',
 )
 
 MIDDLEWARE_CLASSES = (
