@@ -1,13 +1,14 @@
 from django.db import models
 
+
 # Create your models here.
 class Play(models.Model):
-	"""Represents a single performance in the database.
+    """Represents a single performance in the database.
 	
 	The class/table contains static data regarding the performance. Data that will
 	change over time will be store elsewhere."""
-	
-	# Note: these lengths are arbitrary.
-	url_title = models.CharField(max_length=100)
-	title = models.CharField(max_length=100)
-	director = models.CharField(max_length=100)
+
+    # Note: these lengths are arbitrary.
+    url_title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
