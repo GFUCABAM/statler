@@ -1,0 +1,10 @@
+# .gitignore
+
+# Compiled Python files
+*.pyc
+
+# Compiled Python directories
+__pycache__
+
+# PyCharm Files
+.idea/**
