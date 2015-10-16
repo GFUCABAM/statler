@@ -5,8 +5,12 @@
     <script>
 
       // This script makes an API call and displays the returned data
+
+      // jQuery code normally starts with the .ready function
       $(document).ready(function(){
+        // Get JSON from a URL as an object
         $.getJSON('/api/play.json', function(result){
+          // Iterate through fields of object, printing their names and values
           for(var key in result) {
             $('pre').append(key+': '+result[key]+'\n');
           }
