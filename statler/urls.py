@@ -17,7 +17,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^plays/', include('statler_site.urls', namespace="plays")),
     url(r'^api/', include('statler_api.urls', namespace="api")),
     url(r'^admin/', include(admin.site.urls)),
+    
+    # Default to statler_site
+    url(r'^', include('statler_site.urls')),
 ]
