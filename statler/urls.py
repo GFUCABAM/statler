@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+#import statler_api
+#import statler_site
 
 urlpatterns = [
+    url(r'^api/', include('statler_api.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # Default to statler_site
+    url(r'^', include('statler_site.urls')),
 ]
