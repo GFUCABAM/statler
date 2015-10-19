@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Play
 
-# Register your models here.
+# show plays on the auto-generated admin site
+admin.site.register(Play)

@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
-
 
 def healthCheck(request):
     """Returns a string. This shouldn't break. We can use this
@@ -9,9 +8,8 @@ def healthCheck(request):
     return HttpResponse("The site is alive.")
 
 
-def index(request):
-    """The Fake index
-    TODO: Replace me!"""
-
-    return HttpResponse("Fake index.")
-
+def getPlayListPage(request):
+    """returns a static html page which will use a script
+    to get and display data"""
+    
+    return render_to_response('play-list-page.html')

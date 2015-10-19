@@ -1,12 +1,12 @@
 from django.conf.urls import url
-
-# Reference this app's views. I believe our pages should be views.
+# Reference this app's views.
 from . import views
 
 # This is where the magical regex mapping happens.
 urlpatterns = [
-    url(r'^health-check$', views.healthCheck, name='healthCheck'),
-
-    # TODO: Replace this with the real index:
-    url(r'^$', views.index, name='index'),
+    url(r'^health-check/$', views.healthCheck, name='health-check'),
+    
+    # blank urls are forwarded to
+    # the views.getPlayListPage function
+    url(r'^$', views.getPlayListPage, name='play-list'),
 ]

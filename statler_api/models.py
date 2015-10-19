@@ -11,3 +11,7 @@ class Play(models.Model):
 	url_title = models.CharField(max_length=100)
 	title = models.CharField(max_length=100)
 	director = models.CharField(max_length=100)
+
+	# default string representation
+	def __str__(self):
+		return self.title

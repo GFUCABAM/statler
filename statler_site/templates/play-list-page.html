@@ -9,11 +9,9 @@
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
         // Get JSON from a URL as an object
-        $.getJSON('/api/play.json', function(result){
-          // Iterate through fields of object, printing their names and values
-          for(var key in result) {
-            $('pre').append(key+': '+result[key]+'\n');
-          }
+        $.getJSON('/api/play-list/', function(result){
+          // display the returned json
+          $('p').append(JSON.stringify(result));
         });
       });
 
@@ -21,7 +19,7 @@
   </head>
   <body>
 
-    <pre></pre>
+    <p></p>
 
   </body>
 </html>
