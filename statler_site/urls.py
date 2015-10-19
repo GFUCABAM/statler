@@ -4,7 +4,7 @@ from . import views
 
 # This is where the magical regex mapping happens.
 urlpatterns = [
-    url(r'^health-check$', views.healthCheck, name='health-check'),
+    url(r'^health-check/$', views.healthCheck, name='health-check'),
     
     # blank urls are forwarded to
     # the views.getPlayListPage function
