@@ -7,8 +7,20 @@ class Play(models.Model):
 	
 	The class/table contains static data regarding the performance. Data that will
 	change over time will be store elsewhere."""
+<<<<<<< HEAD
 
     # Note: these lengths are arbitrary.
     url_title = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
+=======
+	
+	# Note: these lengths are arbitrary.
+	url_title = models.CharField(max_length=100)
+	title = models.CharField(max_length=100)
+	director = models.CharField(max_length=100)
+
+	# default string representation
+	def __str__(self):
+		return self.title
+>>>>>>> origin/dev
