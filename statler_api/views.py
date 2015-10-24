@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.core import serializers
-from .models import Play
+from .models import PlayDAO
 
 def healthCheck(request):
     """Returns a string. This shouldn't break. We can use this
@@ -13,4 +13,4 @@ def getPlayList(request):
     returns json of the list of plays
     see https://docs.djangoproject.com/en/1.8/topics/serialization/"""
     
-    return HttpResponse(serializers.serialize("json", Play.objects.all()))
+    return HttpResponse(serializers.serialize("json", PlayDAO.objects.all()))
