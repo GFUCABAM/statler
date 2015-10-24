@@ -1,3 +1,8 @@
+"""Data Access Objects, mapped to database tables.
+
+These should be mapped to the api objects in api_models.py"""
+
+
 from django.db import models
 
 
