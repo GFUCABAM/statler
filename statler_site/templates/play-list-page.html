@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+
+      // This script makes an API call and displays the returned data
+
+      // jQuery code normally starts with the .ready function
+      $(document).ready(function(){
+        // Get JSON from a URL as an object
+        $.getJSON('/api/play-list/', function(result){
+          // display the returned json
+          $('p').append(JSON.stringify(result));
+        });
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <p></p>
+
+  </body>
+</html>

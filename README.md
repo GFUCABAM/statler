@@ -1,8 +1,8 @@
 # statler
-The beginnings of awesome
 
+The beginnings of awesome.
 
-Anthony was here
+*We're underway!*
 
-This is a thing Ben wrote.
+See the Wiki at https://github.com/GFUCABAM/statler/wiki for all documentation.
 
