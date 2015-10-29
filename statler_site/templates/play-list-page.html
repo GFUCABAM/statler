@@ -14,16 +14,23 @@
       $(document).ready(function(){
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
-          // display the returned json
-          $('p').append(JSON.stringify(result));
+          // display the returned json dynamically
+          $.each(result, function(key, value){
+            $("<li/>").appendTo("#plays").html("<h3>" + value.fields.title + "</h3");
+            $("<p/>").appendTo("#plays").html(value.fields.title);
+            $("<p/>").appendTo("#plays").html(value.fields.director);
+          });
         });
       });
 
     </script>
   </head>
   <body>
+    
+    <h1>Ten Ten Ten Play Rankings</h1>
 
-    <p></p>
+		<ol id=plays>
+		</ol>
 
   </body>
 </html>
