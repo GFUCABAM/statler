@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
 
@@ -14,16 +15,36 @@
       $(document).ready(function(){
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
-          // display the returned json
-          $('p').append(JSON.stringify(result));
+          // display the returned json dynamically
+          value = result[0];
+
+          // fill in page title
+          $(".header > h1").append(value.fields.title);
+          // fill in description
+          $('#description').append("directed by: ", value.fields.director);
+
         });
       });
 
     </script>
   </head>
   <body>
-
-    <p></p>
+    
+    <div class="page-container">
+      <div class="header">
+        <img src="/static/header-image.png">
+        <h1></h1>
+      </div>
+      <div id="description"></div>
+      <div style="height: 200px; border-style: solid;">
+        Review post box will go here.
+      </div>
+      <ul id="review-list">
+        <li>
+          Review text will go here.
+        </li>
+      </ul>
+    </div>
 
   </body>
 </html>
