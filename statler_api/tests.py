@@ -1,12 +1,11 @@
 from django.test import TestCase
-from .models import Play
+from statler_api.models import Play
 
 # Testing the Plays table
 class BasicPlaysTestCase(TestCase):
 
     def setUp(self):
         self.play = Play()
-        self.settings.configure()
 
     # Test if the play can be saved
     def testCanSavePlays(self):
