@@ -16,12 +16,14 @@
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
           // display the returned json dynamically
-          value = result[0];
 
           // fill in page title
-          $(".header > h1").append(value.fields.title);
+          $(".header > h1").append(result.title);
           // fill in description
-          $('#description').append("directed by: ", value.fields.director);
+          $('#description').append(
+            $("<p/>").append(result.description),
+            $("<p/>").append("Directed by: ", result.director)
+          );
 
         });
       });

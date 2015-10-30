@@ -14,21 +14,21 @@ class Play:
         assert isinstance(dao, PlayDAO)
 
         # Bind DAO fields to the new instance.
-        self.urlTitle = dao.url_title
+        self.url_title = dao.url_title
         self.title = dao.title
         self.director = dao.director
         self.actors = dao.actors
-        self.showTimes = dao.show_times
+        self.show_times = dao.show_times
         self.description = dao.description
         # TODO: Resolve naming discrepancy
-        self.imageUrl = dao.photo
+        self.image_url = dao.photo
 
         # TODO: self.rank = ??? (Look this up from DB)
         self.rank = None
 
         # Map the play's review DAOs to review API objects
         # TODO: Filter to top reviews only.
-        self.reviews = map(lambda r: Review(r), dao.reviewdao_set)
+        self.reviews = [Review(r) for r in dao.reviewdao_set.all()]
 
 
 class Review:
@@ -93,7 +93,7 @@ class PlayList:
         assert isinstance(dao, PlayListDAO)
 
         # Bind DAO fields to the new instance.
-        self.urlTitle = dao.url_title
+        self.url_title = dao.url_title
 
         # Map contained DAOs to non-DAOs
-        self.entries = map(lambda p: PlayListEntry(p), dao.playlistentrydao_set)
+        self.entries = [PlayListEntry(p) for p in dao.playlistentrydao_set.all()]
