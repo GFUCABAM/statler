@@ -45,26 +45,25 @@ class Review:
         # TODO: Resolve naming discrepancy
         self.date = dao.timestamp
 
-# TODO: Work in progress.
-# class NewReview:
-#     """Represents a new review, prior to being saved in the database."""
-#
-#     # TODO: Figure out automatic serialization from the JSON request.
-#
-#     def __init__(self, playUrlTitle, text):
-#         """Construct a new review from posted text"""
-#
-#         self.text = text
-#         self.playUrlTitle = playUrlTitle
-#
-#         # timestamp the new review right now.
-#         self.timestamp = time.time()
-#
-#     def toDao(self):
-#         dao = ReviewDAO()
-#
-#         dao.text = self.text
-#         dao.timestamp = self.timestamp
+class NewReview:
+    """Represents a new review, prior to being saved in the database."""
+
+    # TODO: Figure out automatic serialization from the JSON request.
+
+    def __init__(self, playUrlTitle, text):
+        """Construct a new review from posted text"""
+
+        self.text = text
+        self.playUrlTitle = playUrlTitle
+
+        # timestamp the new review right now.
+        self.timestamp = time.time()
+
+    def toDao(self):
+        dao = ReviewDAO()
+
+        dao.text = self.text
+        dao.timestamp = self.timestamp
 
 
 class PlayListEntry:
