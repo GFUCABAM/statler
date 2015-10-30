@@ -8,11 +8,11 @@ def healthCheck(request):
     return HttpResponse("The site is alive.")
 
 def getPlayListPage(request):
-    """returns a static html page which will use JavaScript
+    """returns an html page which will use JavaScript
     to get and display data"""
     return render_to_response('play-list-page.html')
 
 def getPlayDetailPage(request, play_id):
-    """returns a static html page which will use JavaScript
+    """returns an html page which will use JavaScript
     to get and display data"""
     return render(request, 'play-detail-page.html', {'play_id': play_id})
