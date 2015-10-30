@@ -1,14 +1,15 @@
 from django.test import TestCase
-from statler_api.models import Play
+from statler_api.models import PlayDAO
 
-# Testing the Plays table
+
 class BasicPlaysTestCase(TestCase):
+    """Testing the Plays table"""
 
     def setUp(self):
-        self.play = Play()
+        self.play = PlayDAO()
 
-    # Test if the play can be saved
     def testCanSavePlays(self):
+        """Test if the play can be saved"""
         self.play.director = "Director"
         self.play.url_title = "URL Title"
         self.play.title = "Title"
@@ -19,18 +20,16 @@ class BasicPlaysTestCase(TestCase):
         self.assertEqual("URL Title", self.play.url_title)
         self.assertEqual("Title", self.play.title)
 
-    # Test if the play can be updated and the updated version is refreshed from the database
     def testCanRefreshPlaysFromDatabase(self):
+        """Test if the play can be updated and the updated version is refreshed from the database"""
         self.play.director = "Director"
         self.play.url_title = "URL Title"
         self.play.title = "Title"
 
         self.play.save()
 
-        self.play.update(title = "New Title")
+        # This updates the title of all plays in the database. This may be a bad idea.
+        PlayDAO.objects.update(title="New Title")
 
         self.play.refresh_from_db()
         self.assertEqual("New Title", self.play.title)
-
-    def tearDown(self):
-        self.play.dispose()
