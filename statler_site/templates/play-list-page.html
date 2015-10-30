@@ -21,7 +21,7 @@
             // this indentation helps because it looks a bit like html
             $('#play-list').append(
               //the whole list item is a link to the play description page
-              $('<a/>', {href: value.fields.url_title}).append(
+              $('<a/>', {href: 'play/'+value.fields.url_title}).append(
                 $('<li/>').append(
                   $('<h1/>').append(value.fields.title),
                   $('<p/>').append('directed by: ', value.fields.director)
@@ -39,7 +39,8 @@
     
     <div class="page-container">
       <div class="header">
-        <img src="/static/header-image.png">
+        <img class="centered-image" src="/static/header-image.png"/>
+        <img class="logo-overlay" src="/static/gfu-logo.png"/>
         <h1>Ten! Ten! Ten!</h1>
       </div>
       <ol id="play-list" type="1">
