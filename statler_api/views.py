@@ -1,12 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core import serializers
-from .models import Play
+from .models import PlayDAO
+
 
 def healthCheck(request):
     """Returns a string. This shouldn't break. We can use this
     to confirm the server is on its feet."""
     return HttpResponse("The API is alive.")
+
 
 def getPlayList(request):
     """called when a GET request is sent to /api/play-list/
