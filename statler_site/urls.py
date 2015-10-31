@@ -7,8 +7,8 @@ urlpatterns = [
     # urls that look like 'health-check/'
     url(r'^health-check/$', views.healthCheck, name='health-check'),
 
-    # urls that look like 'reomeo-and juliet/' for example
-    url(r'^(?P<play_id>[^,/]+)/$', views.getPlayDetailPage, name='play-detail'),
+    # urls that look like 'play/<play_id>/'
+    url(r'^play/(?P<play_id>[^,/]+)/$', views.getPlayDetailPage, name='play-detail'),
     
     # blank urls are forwarded to
     # the views.getPlayListPage function

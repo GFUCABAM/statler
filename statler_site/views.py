@@ -1,6 +1,5 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
-from statler_api.models import Play
 
 def healthCheck(request):
     """Returns a string. This shouldn't break. We can use this
