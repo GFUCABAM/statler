@@ -19,24 +19,35 @@ body {
 .page-container {
   max-width: 1024px;
   margin: auto;
+  overflow: hidden;
 }
 
 .header {
    position: relative;
+   height: 122px;
 }
 
-.header img {
-  /* TODO: make header image scale correctly when page is narrow */
+.centered-image {
+  position: absolute;
+  margin: auto;
+  left: -1000px;
+  right: -1000px;
+}
+
+.logo-overlay {
+  position: absolute;
+  right: 35px;
+  top: 28px;
 }
 
 .header h1 {
-   position: absolute;
-   left: 30px;
-   top: 20px;
-   font-family: "Accord Light SF", "Book Antiqua", serif;
-   font-size: 48pt;
-   font-weight: normal;
-   color: black;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  font-family: "Accord Light SF", "Book Antiqua", serif;
+  font-size: 48pt;
+  font-weight: normal;
+  color: black;
 }
 
 #description {
