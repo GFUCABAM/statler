@@ -45,6 +45,7 @@ class Review:
         # TODO: Resolve naming discrepancy
         self.date = dao.timestamp
 
+
 class NewReview:
     """Represents a new review, prior to being saved in the database."""
 
