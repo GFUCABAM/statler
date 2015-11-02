@@ -1,7 +1,11 @@
 """Classes which represent objects above the database level."""
 
 import time
-from .models import *
+from .models import PlayDAO
+from .models import PlayListDAO
+from .models import PlayListEntryDAO
+from .models import ReviewDAO
+from statler_api import text_processing
 
 
 class Play:
@@ -52,7 +56,7 @@ class NewReview:
     # TODO: Figure out automatic serialization from the JSON request.
 
     def __init__(self, playUrlTitle, text):
-        """Construct a new review from posted text"""
+        """ Construct a new review from posted text, calculating required values """
 
         self.text = text
         self.playUrlTitle = playUrlTitle
@@ -60,11 +64,18 @@ class NewReview:
         # timestamp the new review right now.
         self.timestamp = time.time()
 
+        # Fetch the rating externally
+        self.rating = text_processing.rateReview(text)
+
     def toDao(self):
         dao = ReviewDAO()
 
         dao.text = self.text
         dao.timestamp = self.timestamp
+        dao.rating = self.rating
+
+        # Fetch the play to reference
+        dao.play = PlayDAO.objects.get(url_title=self.playUrlTitle)
 
 
 class PlayListEntry:
