@@ -21,7 +21,7 @@ class PlayDAO(models.Model):
     actors = models.CharField(max_length=256, blank=True)
     description = models.CharField(max_length=1024, blank=True)
     # TODO: Figure out file upload location
-    image = models.ImageField(upload_to="TODO", blank=True, null=True)
+    image = models.FileField(upload_to="TODO", blank=True, null=True)
     show_times = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
@@ -55,7 +55,6 @@ class PlayListDAO(models.Model):
 
     def __str__(self):
         """default string representation"""
-        self.
 
         return self.title
 
@@ -71,5 +70,4 @@ class PlayListEntryDAO(models.Model):
     def __str__(self):
         """default string representation"""
 
-        self.
         return self.play.title + " in " + self.play_list.title

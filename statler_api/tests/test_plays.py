@@ -14,7 +14,7 @@ class PlayTestHelper:
         director = "Test Director One"
         actors = "Test Actor One, Test Actor One Prime"
         description = "The first of the test plays."
-        photo = None
+        image = None
         show_times = "The first time they test plays"
 
     class Play2Vals:
@@ -24,7 +24,7 @@ class PlayTestHelper:
         director = "Test Director Two"
         actors = "Test Actor Two, Test Actor Two Prime"
         description = "The second of the test plays."
-        photo = None
+        image = None
         show_times = "The second time they test plays"
 
     class PlayPrepersistedVals:
@@ -34,7 +34,7 @@ class PlayTestHelper:
         director = "Test Director Prepersisted"
         actors = "Test Actor Prepersisted, Test Actor Prepersisted Prime"
         description = "A play which was saved to the database before testing commenced"
-        photo = None
+        image = None
         show_times = "Before they even test plays"
         
     @staticmethod
@@ -45,7 +45,7 @@ class PlayTestHelper:
         asserter.assertEquals(dao.director, valClass.director)
         asserter.assertEquals(dao.actors, valClass.actors)
         asserter.assertEquals(dao.description, valClass.description)
-        asserter.assertEquals(dao.photo, valClass.photo)
+        # asserter.assertEquals(dao.image, valClass.image)
         asserter.assertEquals(dao.show_times, valClass.show_times)
         
     @staticmethod
@@ -59,7 +59,7 @@ class PlayTestHelper:
         dao.director = valClass.director
         dao.actors = valClass.actors
         dao.description = valClass.description
-        dao.photo = valClass.photo
+        dao.image = valClass.image
         dao.show_times = valClass.show_times
 
         return dao
@@ -141,20 +141,20 @@ class APIPlaysTestCase(TestCase):
         dao.director = PlayTestHelper.Play1Vals.director
         dao.actors = PlayTestHelper.Play1Vals.actors
         dao.description = PlayTestHelper.Play1Vals.description
-        dao.photo = PlayTestHelper.Play1Vals.photo
+        dao.image = PlayTestHelper.Play1Vals.image
         dao.show_times = PlayTestHelper.Play1Vals.show_times
 
         # Convert DAO to API object
         apiPlay = Play(dao)
 
         # Compare attributes
-        # TODO: Once photos are implemented, test that too.
+        # TODO: Once images are implemented, test that too.
         self.assertEqual(apiPlay.url_title, PlayTestHelper.Play1Vals.url_title)
         self.assertEqual(apiPlay.title, PlayTestHelper.Play1Vals.title)
         self.assertEqual(apiPlay.director, PlayTestHelper.Play1Vals.director)
         self.assertEqual(apiPlay.actors, PlayTestHelper.Play1Vals.actors)
         self.assertEqual(apiPlay.description, PlayTestHelper.Play1Vals.description)
-        # self.assertEqual(apiPlay.photo, PlayTestHelper.Play1Vals.photo)
+        # self.assertEqual(apiPlay.image, PlayTestHelper.Play1Vals.image)
         self.assertEqual(apiPlay.show_times, PlayTestHelper.Play1Vals.show_times)
 
     def testCanLoadPlayToAPI(self):
@@ -176,7 +176,7 @@ class APIPlaysTestCase(TestCase):
         self.assertEqual(apiPlay.director, PlayTestHelper.Play1Vals.director)
         self.assertEqual(apiPlay.actors, PlayTestHelper.Play1Vals.actors)
         self.assertEqual(apiPlay.description, PlayTestHelper.Play1Vals.description)
-        # self.assertEqual(apiPlay.photo, PlayTestHelper.Play1Vals.photo)
+        # self.assertEqual(apiPlay.image, PlayTestHelper.Play1Vals.image)
         self.assertEqual(apiPlay.show_times, PlayTestHelper.Play1Vals.show_times)
 
 
