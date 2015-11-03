@@ -1,6 +1,5 @@
 """Classes which represent objects above the database level."""
-
-import time
+from datetime import datetime
 from .models import PlayDAO
 from .models import PlayListDAO
 from .models import PlayListEntryDAO
@@ -25,7 +24,7 @@ class Play:
         self.show_times = dao.show_times
         self.description = dao.description
         # TODO: Resolve naming discrepancy
-        self.image_url = dao.photo
+        self.image_url = dao.image.url if dao.image else None
 
         # TODO: self.rank = ??? (Look this up from DB)
         self.rank = None
@@ -38,7 +37,7 @@ class Play:
 class Review:
     """Represents a review object, """
 
-    def __init__(self, dao=None, text=None, date=None):
+    def __init__(self, dao=None):
         """Constructs a previously-posted review object from a DAO"""
 
         # Confirm we have the right sort of DAO
@@ -46,8 +45,7 @@ class Review:
 
         # Bind DAO fields to the new instance.
         self.text = dao.text
-        # TODO: Resolve naming discrepancy
-        self.date = dao.timestamp
+        self.timestamp = dao.timestamp
 
 
 class NewReview:
@@ -62,7 +60,7 @@ class NewReview:
         self.playUrlTitle = playUrlTitle
 
         # timestamp the new review right now.
-        self.timestamp = time.time()
+        self.timestamp = datetime.now()
 
         # Fetch the rating externally
         self.rating = text_processing.rateReview(text)

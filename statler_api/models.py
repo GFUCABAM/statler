@@ -20,7 +20,8 @@ class PlayDAO(models.Model):
     # null refers to database structure. blank refers to Django validation.
     actors = models.CharField(max_length=256, blank=True)
     description = models.CharField(max_length=1024, blank=True)
-    photo = models.FilePathField(blank=True, null=True)
+    # TODO: Figure out file upload location
+    image = models.ImageField(upload_to="TODO", blank=True, null=True)
     show_times = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
@@ -54,6 +55,7 @@ class PlayListDAO(models.Model):
 
     def __str__(self):
         """default string representation"""
+        self.
 
         return self.title
 
@@ -69,4 +71,5 @@ class PlayListEntryDAO(models.Model):
     def __str__(self):
         """default string representation"""
 
+        self.
         return self.play.title + " in " + self.play_list.title
