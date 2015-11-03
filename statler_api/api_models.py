@@ -24,7 +24,7 @@ class Play:
         self.show_times = dao.show_times
         self.description = dao.description
         # TODO: Resolve naming discrepancy
-        self.image_url = dao.image.url if dao.image else None
+        self.image_url = (dao.image.url if dao.image else None)
 
         # TODO: self.rank = ??? (Look this up from DB)
         self.rank = None
@@ -59,6 +59,7 @@ class NewReview:
         self.text = text
         self.playUrlTitle = playUrlTitle
 
+        # TODO: Push timestamping into the database.
         # timestamp the new review right now.
         self.timestamp = datetime.now()
 
@@ -66,6 +67,10 @@ class NewReview:
         self.rating = text_processing.rateReview(text)
 
     def toDao(self):
+        """ Readies the review for database insertion.
+
+        :return: A ReviewDAO, created from the new review.
+        """
         dao = ReviewDAO()
 
         dao.text = self.text
@@ -74,6 +79,8 @@ class NewReview:
 
         # Fetch the play to reference
         dao.play = PlayDAO.objects.get(url_title=self.playUrlTitle)
+
+        return dao
 
 
 class PlayListEntry:
