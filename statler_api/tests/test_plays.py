@@ -135,14 +135,7 @@ class APIPlaysTestCase(TestCase):
         """Tests conversion from a playDAO to an API Play"""
 
         # Populate DAO
-        dao = PlayDAO()
-        dao.url_title = PlayTestHelper.Play1Vals.url_title
-        dao.title = PlayTestHelper.Play1Vals.title
-        dao.director = PlayTestHelper.Play1Vals.director
-        dao.actors = PlayTestHelper.Play1Vals.actors
-        dao.description = PlayTestHelper.Play1Vals.description
-        dao.image = PlayTestHelper.Play1Vals.image
-        dao.show_times = PlayTestHelper.Play1Vals.show_times
+        dao = PlayTestHelper.makeDao(PlayTestHelper.Play1Vals)
 
         # Convert DAO to API object
         apiPlay = Play(dao)
@@ -171,6 +164,8 @@ class APIPlaysTestCase(TestCase):
 
         # Convert it to an API play
         apiPlay = Play(dao2)
+
+        # Make sure the values still match.
         self.assertEqual(apiPlay.url_title, PlayTestHelper.Play1Vals.url_title)
         self.assertEqual(apiPlay.title, PlayTestHelper.Play1Vals.title)
         self.assertEqual(apiPlay.director, PlayTestHelper.Play1Vals.director)
