@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'statler',
         'USER': 'postgres',
         # EPIPHANY: Let's reference an environment variable here. (Maybe for the username, too)
-        'PASSWORD': '12345', # It's super secure!
+        'PASSWORD': '12345',  # It's super secure!
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
