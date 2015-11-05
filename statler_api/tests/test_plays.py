@@ -65,7 +65,7 @@ class PlayTestHelper:
         return dao
 
 
-class BasicPlaysTestCase(TestCase):
+class PlayDAOTestCase(TestCase):
     """Testing the Plays table"""
     
     def setUp(self):
@@ -128,7 +128,7 @@ class BasicPlaysTestCase(TestCase):
         self.assertEqual("New Title", play.title)
 
 
-class APIPlaysTestCase(TestCase):
+class PlayTestCase(TestCase):
     """ Testing the plays at the API level, as well as conversion from the DAOs. """
 
     def testPlayAPIFromDAO(self):
