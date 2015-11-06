@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script>
 
       // This script makes an API call and displays the returned data
@@ -25,7 +29,12 @@
                 $('<li/>').append(
                   $('<h1/>').append(value.title),
                   $('<p/>').append(value.description),
-                  $('<p/>').append('Directed by: ', value.director)
+                  $('<p/>').append(
+                    'Directed by: ', value.director,
+                    // &#x2022 is a bullet, which makes a nice separator
+                    ' &#x2022; Actors: ', value.actors,
+                    ' &#x2022; Showtimes: ', value.show_times
+                  )
                 )
               )
             );

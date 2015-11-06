@@ -9,6 +9,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified CSS -->
 
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -30,8 +33,12 @@
           $(".header > h1").append(result.title);
           // fill in description
           $('#description').append(
-            $("<p/>").append(result.description),
-            $("<p/>").append("Directed by: ", result.director)
+            $("<p/>").append(result.description)
+          );
+          $('#details').append(
+            $("<p/>").append("Directed by: ", result.director),
+            $("<p/>").append("Actors: ", result.actors),
+            $("<p/>").append("Showtimes: ", result.show_times)
           );
           // fill in reviews
           $.each(result.reviews, function(index, review) {
@@ -54,6 +61,7 @@
         <h1></h1>
       </div>
       <div id="description"></div>
+      <div id="details"></div>
       <div style="height: 200px; border-style: solid;">
         Review post box will go here.
       </div>
