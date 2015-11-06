@@ -23,7 +23,6 @@ class Play:
         self.actors = dao.actors
         self.show_times = dao.show_times
         self.description = dao.description
-        # TODO: Resolve naming discrepancy
         self.image_url = (dao.image.url if dao.image else None)
 
         # TODO: self.rank = ??? (Look this up from DB)
