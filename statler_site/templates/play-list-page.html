@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
 
       // This script makes an API call and displays the returned data
 
+      // This string will be filled out by Django when the page is served.
+      // It contains the URL to make an API call to
+      var apiEndpointUrl = '{% url 'api:play-list' %}';
+
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
         // Get JSON from a URL as an object
-        $.getJSON('/api/play-list/', function(result){
-          // display the returned json
-          $('p').append(JSON.stringify(result));
+        $.getJSON(apiEndpointUrl, function(result){
+          // display the returned json dynamically
+          $.each(result, function(index, value){
+
+            // this indentation helps because it looks a bit like html
+            $('#play-list').append(
+              //the whole list item is a link to the play description page
+              $('<a/>', {href: 'play/'+value.url_title}).append(
+                $('<li/>').append(
+                  $('<h1/>').append(value.title),
+                  $('<p/>').append(value.description),
+                  $('<p/>').append('Directed by: ', value.director)
+                )
+              )
+            );
+
+          });
         });
       });
 
     </script>
   </head>
   <body>
-
-    <p></p>
+    
+    <div class="page-container">
+      <div class="header">
+        <img class="centered-image" src="/static/header-image.png"/>
+        <img class="logo-overlay" src="/static/gfu-logo.png"/>
+        <h1>Ten! Ten! Ten!</h1>
+      </div>
+      <ol id="play-list" type="1">
+      </ol>
+    </div>
 
   </body>
 </html>
