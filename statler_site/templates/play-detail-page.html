@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--bootstrap old and new support broswers-->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-	<!-- jQuery library -->
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap old and new support broswers-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script>
 
@@ -32,6 +33,12 @@
             $("<p/>").append(result.description),
             $("<p/>").append("Directed by: ", result.director)
           );
+          // fill in reviews
+          $.each(result.reviews, function(index, review) {
+            $("#review-list").append(
+              $("<li/>").append(review.text)
+            );
+          });
 
         });
       });
@@ -51,9 +58,6 @@
         Review post box will go here.
       </div>
       <ul id="review-list">
-        <li>
-          Review text will go here.
-        </li>
       </ul>
     </div>
 
