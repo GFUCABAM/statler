@@ -54,6 +54,12 @@ body {
   margin: 11px;
 }
 
+#details {
+  margin: 11px;
+  font-size: 10pt;
+  color: #a8a8a8;
+}
+
 ol {
   font-size: 16pt;
 }
