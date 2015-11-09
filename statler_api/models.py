@@ -20,8 +20,7 @@ class PlayDAO(models.Model):
     # null refers to database structure. blank refers to Django validation.
     actors = models.CharField(max_length=256, blank=True)
     description = models.CharField(max_length=1024, blank=True)
-    # TODO: Figure out file upload location
-    image = models.FileField(upload_to="TODO", blank=True, null=True)
+    image = models.FileField(upload_to="static", blank=True, null=True)
     show_times = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
