@@ -12,7 +12,7 @@ urlpatterns = [
     # the views.getPlayDetail function
     url(r'^play/(?P<play_id>[^,/]+)/$', views.getPlayDetail, name='play-detail'),
     
-    # urls that look like /api/play-list/ are forwarded to
+    # urls that look like /api/play-list/<play_list_id> are forwarded to
     # the views.getPlayList function
-    url(r'^play-list/$', views.getPlayList, name='play-list'),
+    url(r'^play-list/(?P<play_list_id>[^,/]+)/$', views.getPlayList, name='play-list'),
 ]
