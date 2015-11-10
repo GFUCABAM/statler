@@ -52,6 +52,10 @@ class PlayListDAO(models.Model):
     title = models.CharField(max_length=256)
     url_title = models.CharField(max_length=32)
 
+    # See https://docs.djangoproject.com/en/dev/topics/db/models/#intermediary-manytomany
+    # for documentation on this many-to-many pattern.
+    plays = models.ManyToManyField(PlayDAO, through='PlayListEntryDAO')
+
     def __str__(self):
         """default string representation"""
 
@@ -61,8 +65,8 @@ class PlayListDAO(models.Model):
 class PlayListEntryDAO(models.Model):
     """Glues together Plays and PlayLists in an optionally ordered fashion."""
 
-    play_list = models.ForeignKey(PlayListDAO)
-    play = models.ForeignKey(PlayDAO)
+    play_list = models.ForeignKey(PlayListDAO, on_delete=models.CASCADE)
+    play = models.ForeignKey(PlayDAO, on_delete=models.CASCADE)
     # Note that the order is optional.
     play_list_order = models.IntegerField(null=True, blank=True)
 

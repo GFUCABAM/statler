@@ -13,7 +13,7 @@
 
       // This string will be filled out by Django when the page is served.
       // It contains the URL to make an API call to
-      var apiEndpointUrl = '{% url 'api:play-list' %}';
+      var apiEndpointUrl = '{% url 'api:play-list' play_list_id %}';
 
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
