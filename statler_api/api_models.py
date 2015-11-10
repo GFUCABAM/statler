@@ -1,0 +1,121 @@
+"""Classes which represent objects above the database level."""
+from datetime import datetime
+from .models import PlayDAO
+from .models import PlayListDAO
+from .models import PlayListEntryDAO
+from .models import ReviewDAO
+from statler_api import text_processing
+
+
+class Play:
+    """Represents a play object."""
+
+    def __init__(self, dao):
+        """Constructs a new Play object from a DAO"""
+
+        # Confirm we have the right sort of DAO
+        assert isinstance(dao, PlayDAO)
+
+        # Bind DAO fields to the new instance.
+        self.url_title = dao.url_title
+        self.title = dao.title
+        self.director = dao.director
+        self.actors = dao.actors
+        self.show_times = dao.show_times
+        self.description = dao.description
+        self.image_url = (dao.image.url if dao.image else None)
+
+        # TODO: self.rank = ??? (Look this up from DB)
+        self.rank = None
+
+        # Map the play's review DAOs to review API objects
+        # TODO: Filter to top reviews only.
+        self.reviews = [Review(r) for r in dao.reviewdao_set.all()]
+
+
+class Review:
+    """Represents a review object, """
+
+    def __init__(self, dao=None):
+        """Constructs a previously-posted review object from a DAO"""
+
+        # Confirm we have the right sort of DAO
+        assert isinstance(dao, ReviewDAO)
+
+        # Bind DAO fields to the new instance.
+        self.text = dao.text
+        self.timestamp = dao.timestamp
+
+
+class NewReview:
+    """Represents a new review, prior to being saved in the database."""
+
+    # TODO: Figure out automatic serialization from the JSON request.
+
+    def __init__(self, playUrlTitle, text):
+        """ Construct a new review from posted text, calculating required values """
+
+        self.text = text
+        self.playUrlTitle = playUrlTitle
+
+        # TODO: Push timestamping into the database.
+        # timestamp the new review right now.
+
+        # TODO: This resulted in a warning when .toDao().save() was
+        # called on the object:
+        # C:\Program Files\Python34\lib\site-packages\django\db\models\fields\__init__.py:
+        # 1474: RuntimeWarning: DateTimeField ReviewDAO.timestamp received a naive datetim
+        # e (2015-11-10 05:39:55.612406) while time zone support is active.
+        # RuntimeWarning)
+        self.timestamp = datetime.now()
+
+        # Fetch the rating externally
+        self.rating = text_processing.rateReview(text)
+
+    def toDao(self):
+        """ Readies the review for database insertion.
+
+        :return: A ReviewDAO, created from the new review.
+        """
+        dao = ReviewDAO()
+
+        dao.text = self.text
+        dao.timestamp = self.timestamp
+        dao.rating = self.rating
+
+        # Fetch the play to reference
+        dao.play = PlayDAO.objects.get(url_title=self.playUrlTitle)
+
+        return dao
+
+
+class PlayListEntry:
+    """Represents a node in a PlayList. Essentially meaningless outside of PlayList object"""
+
+    def __init__(self, dao):
+        """Constructs a new PlayListEntry object from a DAO."""
+
+        # Confirm we have the right sort of DAO
+        assert isinstance(dao, PlayListEntryDAO)
+
+        # Bind DAO fields to the new instance.
+        self.index = dao.play_list_order
+
+        # Convert PlayDAO to non-DAO
+        self.play = Play(dao.play)
+
+
+class PlayList:
+    """Represents a play list object."""
+
+    def __init__(self, dao):
+        """Constructs a new PlayList object from a DAO"""
+
+        # Confirm we have the right sort of DAO
+        assert isinstance(dao, PlayListDAO)
+
+        # Bind DAO fields to the new instance.
+        self.url_title = dao.url_title
+
+        # Map contained DAOs to non-DAOs
+        self.entries = [PlayListEntry(p) for p in dao.playlistentrydao_set.all()]
