@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <!--bootstrap old and new support broswers-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
@@ -9,11 +12,10 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified CSS -->
 
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script>
 
@@ -64,6 +66,11 @@
       <div id="details"></div>
       <div style="height: 200px; border-style: solid;">
         Review post box will go here.
+        <form action="{% url 'api:play-reviews' play_id %}" method="post">
+          {% csrf_token %}
+          <input type="text" name="text" />
+          <input type="submit" value="Post" />
+        </form>
       </div>
       <ul id="review-list">
       </ul>

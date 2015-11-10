@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
 from django.core import serializers
+from django.utils import html
 import json
 from .models import *
 from .api_models import *
@@ -48,3 +50,17 @@ def getPlayDetail(request, play_id):
         reviews[i]["timestamp"] = reviews[i]["timestamp"].isoformat()
     
     return HttpResponse(json.dumps(play))
+
+
+def postReview(request, play_id):
+    """called when a POST request is sent to /api/play/<play_id>/reviews
+    returns json for the review added"""
+
+    # create and save a review
+    # html.escape should prevent cross-site scripting attacks
+    NewReview(play_id, html.escape(request.POST['text'])).toDao().save()
+
+    # return an HttpResponseRedirect after successfully dealing
+    # with POST data. This prevents data from being posted twice if a
+    # user hits the Back button.
+    return HttpResponseRedirect(reverse('play-detail', args=(play_id,)))

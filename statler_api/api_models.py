@@ -60,6 +60,13 @@ class NewReview:
 
         # TODO: Push timestamping into the database.
         # timestamp the new review right now.
+
+        # TODO: This resulted in a warning when .toDao().save() was
+        # called on the object:
+        # C:\Program Files\Python34\lib\site-packages\django\db\models\fields\__init__.py:
+        # 1474: RuntimeWarning: DateTimeField ReviewDAO.timestamp received a naive datetim
+        # e (2015-11-10 05:39:55.612406) while time zone support is active.
+        # RuntimeWarning)
         self.timestamp = datetime.now()
 
         # Fetch the rating externally
