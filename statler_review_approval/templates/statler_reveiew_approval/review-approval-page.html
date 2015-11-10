@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap old and new support broswers-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!--<link rel="stylesheet" type="text/css" href="/static/styles.css"/>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        function makeFirst(id) {
+
+            var firstPk = $("#top-1 .pk").html();
+            if (firstPk)
+            {
+                makeSecond(firstPk);
+            }
+
+            var text = $("#" + id + " .review-text").html();
+            $("#top-1 .review-text").html(text);
+            $("#top-1 .pk").html(id);
+        }
+        function makeSecond(id) {
+
+            var secondPk = $("#top-2 .pk").html();
+            if (secondPk)
+            {
+                makeThird(secondPk);
+            }
+
+            var text = $("#" + id + " .review-text").html();
+            $("#top-2 .review-text").html(text);
+            $("#top-2 .pk").html(id);
+        }
+        function makeThird(id) {
+            var text = $("#" + id + " .review-text").html();
+            $("#top-3 .review-text").html(text);
+            $("#top-3 .pk").html(id);
+        }
+
+        function submit()
+        {
+            var topPlays = {
+                "top-1": $("#top-1 .pk").html(),
+                "top-2": $("#top-2 .pk").html(),
+                "top-3": $("#top-3 .pk").html()
+            };
+
+            $.post("#", topPlays, function(d) {
+                alert(d);
+            })
+        }
+    </script>
+
+    <title>Review Play</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <h1>Approve {{ playDAO.title }} reviews</h1>
+
+            {% for reviewDAO in playDAO.reviewdao_set.all %}
+                <div class="row" id="{{ reviewDAO.pk }}">
+                    <div class="col-md-2">
+                        <button class="btn btn-default" onclick="makeFirst({{ reviewDAO.pk }})">1</button>
+                        <button class="btn btn-default" onclick="makeSecond({{ reviewDAO.pk }})">2</button>
+                        <button class="btn btn-default" onclick="makeThird({{ reviewDAO.pk }})">3</button>
+                        <div class=""></div>
+                    </div>
+                    <div class="col-md-10 well review-text">{{ reviewDAO.text }}</div>
+                </div>
+                <hr>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- This column contains the current top reviews -->
+        <div class="col-md-6">
+            <h1>Top Reviews</h1>
+            <div id="top-1" class="row">
+                <div class="col-md-2">
+                    <h2>1</h2>
+                    <h3 class="pk"></h3>
+                </div>
+                <div class="col-md-10 review-text well"></div>
+            </div>
+            <hr>
+            <div id="top-2" class="row">
+                <div class="col-md-2">
+                    <h2>2</h2>
+                    <h3 class="pk"></h3>
+                </div>
+                <div class="col-md-10 review-text well"></div>
+            </div>
+            <hr>
+            <div id="top-3" class="row">
+                <div class="col-md-2">
+                    <h2>3</h2>
+                    <h3 class="pk"></h3>
+                </div>
+                <div class="col-md-10 review-text well"></div>
+            </div>
+            <hr>
+
+            <button class="btn btn-big btn-primary" style="width: 100%">Submit</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

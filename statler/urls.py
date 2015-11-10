@@ -17,9 +17,10 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^api/', include('statler_api.urls', namespace="api")),
+    url(r'^api/', include("statler_api.urls", namespace="api")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^approve/', include("statler_review_approval.urls", namespace="review_approval")),
     
     # Default to statler_site
-    url(r'^', include('statler_site.urls')),
+    url(r'^', include("statler_site.urls")),
 ]

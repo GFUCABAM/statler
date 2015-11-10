@@ -9,9 +9,9 @@ def healthCheck(request):
 def getPlayListPage(request):
     """returns an html page which will use JavaScript
     to get and display data"""
-    return render_to_response('play-list-page.html')
+    return render_to_response('statler_site/play-list-page.html')
 
 def getPlayDetailPage(request, play_id):
     """returns an html page which will use JavaScript
     to get and display data"""
-    return render(request, 'play-detail-page.html', {'play_id': play_id})
+    return render(request, 'statler_site/play-detail-page.html', {'play_id': play_id})
