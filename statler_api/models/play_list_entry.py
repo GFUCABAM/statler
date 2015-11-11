@@ -24,6 +24,8 @@ class PlayListEntryDAO(models.Model, StatlerModel):
 
         return {
             "index": self.play_list_order,
-            "play": self.play
+
+            # include only the fields required when in a list on the play.
+            "play": self.play.getPlayListApiFields()
         }
     # endregion

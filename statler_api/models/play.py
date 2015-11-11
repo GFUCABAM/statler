@@ -47,3 +47,24 @@ class PlayDAO(models.Model, StatlerModel):
             "reviews": list(self.reviewdao_set.all())
         }
     # endregion
+
+    # region Other Methods
+    def getPlayListApiFields(self):
+        """ Gets limited set of fields for serialization when this Play is being serialized as part of a PlayList """
+
+        return {
+            "url_title": self.url_title,
+            "title": self.title,
+            "director": self.director,
+            "actors": self.actors,
+            "show_times": self.show_times,
+            "description": self.description,
+            "image_url": (self.image.url if self.image else None),
+
+            # TODO: self.rank = ??? (Look this up from DB)
+            "rank": None
+
+            # Omits reviews.
+        }
+
+    # endregion

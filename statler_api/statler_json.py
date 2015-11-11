@@ -3,20 +3,19 @@ from json import JSONEncoder, dumps
 from statler_api.models import StatlerModel
 
 
-class StatlerEncoder(JSONEncoder):
-    """A JSONEncoder which can handle StatlerModels with an appropriately impelemented getApiFields() method."""
+def encodeDefault(o):
+    """Encode an object: either a StatlerModel instance or an object which is serializable by default."""
 
-    def default(self, o):
-        """Encode an object: either a StatlerModel instance or an object which is serializable by default."""
+    # Specially handle StatlerModels
+    if isinstance(o, StatlerModel):
+        return o.getApiFields()
 
-        # Specially handle StatlerModels
-        if isinstance(o, StatlerModel):
-            return o.getApiFields()
-
-        # Otherwise, call the parent implementation.
-        else:
-            return JSONEncoder.default(self, o)
+    # Otherwise, call the parent implementation.
+    else:
+        return JSONEncoder.default(o)
 
 
 def serializeModel(model):
-    return dumps(model, cls=StatlerEncoder)
+    """Serializes a StatlerModel to JSON."""
+
+    return dumps(model, default=encodeDefault)

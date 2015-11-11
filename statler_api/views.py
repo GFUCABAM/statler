@@ -17,8 +17,8 @@ def getPlayList(request):
     returns json of the list of plays
     see https://docs.djangoproject.com/en/1.8/topics/serialization/"""
 
-    #TODO: get an actual PlayList object instead of all plays
-    aPlayList = list(PlayDAO.objects.all())
+    # TODO: dynamically get an actual PlayList object instead of hardcoded "all"
+    aPlayList = get_object_or_404(PlayListDAO, url_title="all")
     return HttpResponse(serializeModel(aPlayList), content_type="application/json")
     
 
