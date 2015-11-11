@@ -44,6 +44,6 @@ class PlayDAO(models.Model, StatlerModel):
             "rank": None,
 
             # TODO: Filter to top reviews only.
-            "rank": list(self.reviewdao_set.all())
+            "reviews": list(self.reviewdao_set.all())
         }
     # endregion

@@ -27,6 +27,6 @@ class ReviewDAO(models.Model, StatlerModel):
 
         return {
             "text": self.text,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp.isoformat()
         }
     # endregion

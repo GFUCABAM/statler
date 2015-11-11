@@ -1,4 +1,4 @@
-from json import JSONEncoder
+from json import JSONEncoder, dumps
 
 from statler_api.models import StatlerModel
 
@@ -16,3 +16,7 @@ class StatlerEncoder(JSONEncoder):
         # Otherwise, call the parent implementation.
         else:
             return JSONEncoder.default(self, o)
+
+
+def serializeModel(model):
+    return dumps(model, cls=StatlerEncoder)
