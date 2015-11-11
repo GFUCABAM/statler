@@ -99,3 +99,7 @@ li p {
   top: 0px;
   left: 0px;
 }
+
+form, textarea, button {
+  color: black;
+}
