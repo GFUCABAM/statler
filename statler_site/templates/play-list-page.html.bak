@@ -315,10 +315,10 @@ word-break: break-all;
                           </br>
                          </br>          
                          <div  style="position:center;">
-               <div  class="ribbon"  style="top: 24px; left: 243px; width: 763px;	z-index: 1;">
+               <div  class="ribbon"  style="top: 24px; left: 243px; width: 763px;">
                <div class="ribbon-stitches-top"></div><strong class="ribbon-content"><h1>George Fox Theater </h1></strong><div class="ribbon-stitches-bottom"></div></div></div>
 						<div>
-    <form  class="ribbon"  style="left: 327px; margin-top: 77px; width: 534px; top: 4px;">
+     <form  class="ribbon"  style="left: 321px; margin-top: 77px; width: 534px;">
                   <div  class="form-title">
                     <h2>Ten Ten Ten</h2>
                          <div class="form-title">Player Review</div>
