@@ -3,7 +3,7 @@ from django.db import models
 from statler_api.models import StatlerModel
 
 
-class PlayDAO(models.Model, StatlerModel):
+class Play(models.Model, StatlerModel):
     """Represents a single performance in the database.
 
     The class/table contains static data regarding the performance. Data that will

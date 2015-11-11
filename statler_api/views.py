@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
+from statler_api.models import Play, PlayList
 from .statler_json import serializeModel
-from .api_models import *
 
 
 def healthCheck(request):
@@ -18,7 +18,7 @@ def getPlayList(request):
     see https://docs.djangoproject.com/en/1.8/topics/serialization/"""
 
     # TODO: dynamically get an actual PlayList object instead of hardcoded "all"
-    aPlayList = get_object_or_404(PlayListDAO, url_title="all")
+    aPlayList = get_object_or_404(PlayList, url_title="all")
     return HttpResponse(serializeModel(aPlayList), content_type="application/json")
     
 
@@ -26,6 +26,6 @@ def getPlayDetail(request, play_id):
     """called when a GET request is sent to /api/play/<play_id>
     returns json for the play"""
     
-    play = get_object_or_404(PlayDAO, url_title=play_id)
+    play = get_object_or_404(Play, url_title=play_id)
 
     return HttpResponse(serializeModel(play), content_type="application/json")

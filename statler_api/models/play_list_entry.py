@@ -1,14 +1,14 @@
 from django.db import models
 
-from statler_api.models import PlayDAO, PlayListDAO, StatlerModel
+from statler_api.models import Play, PlayList, StatlerModel
 
 
-class PlayListEntryDAO(models.Model, StatlerModel):
+class PlayListEntry(models.Model, StatlerModel):
     """Glues together Plays and PlayLists in an optionally ordered fashion."""
 
     # region Database Fields
-    play_list = models.ForeignKey(PlayListDAO)
-    play = models.ForeignKey(PlayDAO)
+    play_list = models.ForeignKey(PlayList)
+    play = models.ForeignKey(Play)
     # Note that the order is optional.
     play_list_order = models.IntegerField(null=True, blank=True)
     # endregion

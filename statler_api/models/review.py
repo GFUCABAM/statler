@@ -1,13 +1,15 @@
 from django.db import models
+from datetime import datetime
 
-from statler_api.models import PlayDAO, StatlerModel
+from statler_api.models import Play, StatlerModel
+from statler_api import text_processing
 
 
-class ReviewDAO(models.Model, StatlerModel):
+class Review(models.Model, StatlerModel):
     """Represents a review of a play."""
 
     # region Database Fields
-    play = models.ForeignKey(PlayDAO)
+    play = models.ForeignKey(Play)
     text = models.TextField()
     rating = models.FloatField()
     timestamp = models.DateTimeField()
@@ -29,4 +31,24 @@ class ReviewDAO(models.Model, StatlerModel):
             "text": self.text,
             "timestamp": self.timestamp.isoformat()
         }
+    # endregion
+
+    # region Static Methods
+    @staticmethod
+    def createFromText(text, playUrlTitle):
+        """ Creates and saves a review from the passed text and playUrlTitle, setting other fields appropriately."""
+
+
+        # Create the new review
+        newReview = Review()
+        newReview.text = text
+        newReview.timestamp = datetime.now()
+        newReview.rating = text_processing.rateReview(text)
+        newReview.play = Play.objects.get(url_title=playUrlTitle)
+
+        # Save it
+        newReview.save()
+
+        # Give back the (now saved) review.
+        return newReview
     # endregion

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from statler_api.models import PlayListDAO, PlayListEntryDAO
+from statler_api.models import PlayList, PlayListEntry
 from statler_api.tests.test_plays import PlayTestHelper
 
 

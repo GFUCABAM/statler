@@ -3,7 +3,7 @@ from django.db import models
 from statler_api.models import StatlerModel
 
 
-class PlayListDAO(models.Model, StatlerModel):
+class PlayList(models.Model, StatlerModel):
     """A persisted list of plays."""
 
     # region Database Fields
