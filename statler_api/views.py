@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.core import serializers
@@ -20,20 +20,14 @@ def getPlayList(request, play_list_id):
     returns json of the list of plays
     see https://docs.djangoproject.com/en/1.8/topics/serialization/"""
 
-    if play_list_id == "all":
-        # /api/play_lists/all/ will automatically return all plays
-        aPlayList = PlayDAO.objects.all();
-    else:
-        aPlayList = get_object_or_404(PlayListDAO, url_title=play_list_id).plays.all()
+    aPlayEntryList = PlayList(get_object_or_404(PlayListDAO, url_title=play_list_id)).entries
 
-    aPlayDictList = [vars(Play(x)) for x in aPlayList]
-
-    # Remove reviews from each play dict, because we aren't going
-    # that deep in the object graph
-    for aPlayDict in aPlayDictList:
-        del aPlayDict["reviews"]
-        
-    return HttpResponse(json.dumps(aPlayDictList))
+    aPlayEntryList = [vars(x) for x in aPlayEntryList]
+    for aPlayEntry in aPlayEntryList:
+        aPlayEntry["play"] = vars(aPlayEntry["play"])
+        del aPlayEntry["play"]["reviews"]
+    
+    return HttpResponse(json.dumps(aPlayEntryList))
     
 
 def getPlayDetail(request, play_id):
@@ -58,9 +52,12 @@ def postReview(request, play_id):
 
     # create and save a review
     # html.escape should prevent cross-site scripting attacks
-    NewReview(play_id, html.escape(request.POST['text'])).toDao().save()
+    incomingData = json.loads(request.body.decode('utf-8'))
+    review = NewReview(play_id, html.escape(incomingData["text"]))
+    review.toDao().save()
 
-    # return an HttpResponseRedirect after successfully dealing
-    # with POST data. This prevents data from being posted twice if a
-    # user hits the Back button.
-    return HttpResponseRedirect(reverse('play-detail', args=(play_id,)))
+    reviewDict = vars(review)
+    # convert timestamp to iso string so it will serialize
+    reviewDict["timestamp"] = reviewDict["timestamp"].isoformat()
+    # return the review object created
+    return HttpResponse(json.dumps(reviewDict))

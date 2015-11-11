@@ -100,6 +100,6 @@ li p {
   left: 0px;
 }
 
-form {
+form, textarea, button {
   color: black;
 }
