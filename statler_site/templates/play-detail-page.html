@@ -68,7 +68,7 @@
         Review post box will go here.
         <form action="{% url 'api:play-reviews' play_id %}" method="post">
           {% csrf_token %}
-          <input type="text" name="text" />
+          <textarea name="review" rows="4" cols="50" placeholder="Post a Review..."></textarea>
           <input type="submit" value="Post" />
         </form>
       </div>
