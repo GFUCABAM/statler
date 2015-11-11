@@ -30,13 +30,13 @@ class Play:
 
         # Map the play's review DAOs to review API objects
         # TODO: Filter to top reviews only.
-        self.reviews = [Review(r) for r in dao.reviewdao_set.all()]
+        self.reviews = TopReviews(dao.topreviewdao_set)
 
 
 class Review:
     """Represents a review object, """
 
-    def __init__(self, dao=None):
+    def __init__(self, dao, rank):
         """Constructs a previously-posted review object from a DAO"""
 
         # Confirm we have the right sort of DAO
@@ -112,3 +112,19 @@ class PlayList:
 
         # Map contained DAOs to non-DAOs
         self.entries = [PlayListEntry(p) for p in dao.playlistentrydao_set.all()]
+
+class TopReviews:
+    """Collects a play's top reviews."""
+
+    def __init__(self, topReviewDAOSet):
+        """Create an object containing the top reviews to display with a play."""
+
+        allTopReviews = sorted(list(topReviewDAOSet.all()),
+                               key=lambda r: r.review_order)
+
+        if len(allTopReviews) >= 1:
+            self.topReview1 = Review(allTopReviews[0])
+        if len(allTopReviews) >= 2:
+            self.topReview2 = Review(allTopReviews[1])
+        if len(allTopReviews) >= 3:
+            self.topReview3 = Review(allTopReviews[2])

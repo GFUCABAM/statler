@@ -1,8 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.core import serializers
 import json
-from .models import *
 from .api_models import *
 
 
@@ -33,13 +31,13 @@ def getPlayDetail(request, play_id):
     """called when a GET request is sent to /api/play/<play_id>
     returns json for the play"""
     
-    play = vars(Play(get_object_or_404(PlayDAO, url_title=play_id)))
+    play = Play(get_object_or_404(PlayDAO, url_title=play_id))
 
     # Convert reviews to dicts so they will serialize
-    reviews = play["reviews"]
-    for i in range(len(reviews)):
-        reviews[i] = vars(reviews[i])
-        # convert timestamps to iso strings so they will serialize
-        reviews[i]["timestamp"] = reviews[i]["timestamp"].isoformat()
+    # reviews = play["reviews"]
+    # for i in range(len(reviews)):
+    #     reviews[i] = vars(reviews[i])
+    #     # convert timestamps to iso strings so they will serialize
+    #     reviews[i]["timestamp"] = reviews[i]["timestamp"].isoformat()
     
     return HttpResponse(json.dumps(play))

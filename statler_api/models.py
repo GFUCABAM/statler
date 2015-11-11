@@ -70,3 +70,16 @@ class PlayListEntryDAO(models.Model):
         """default string representation"""
 
         return self.play.title + " in " + self.play_list.title
+
+
+class TopReviewDAO(models.Model):
+    """Connects top (approved) reviews to plays for the sake of display."""
+
+    play = models.ForeignKey(PlayDAO)
+    review = models.ForeignKey(ReviewDAO)
+    review_order = models.IntegerField()
+
+    def __str__(self):
+        """default string representation"""
+
+        return self.play.title + " (" + self.review_order + ")"
