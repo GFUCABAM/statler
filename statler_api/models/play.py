@@ -44,7 +44,7 @@ class Play(models.Model, StatlerModel):
             "rank": None,
 
             # TODO: Filter to top reviews only.
-            "reviews": list(self.reviewdao_set.all())
+            "reviews": list(self.review_set.all())
         }
     # endregion
 

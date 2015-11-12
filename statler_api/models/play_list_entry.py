@@ -7,8 +7,8 @@ class PlayListEntry(models.Model, StatlerModel):
     """Glues together Plays and PlayLists in an optionally ordered fashion."""
 
     # region Database Fields
-    play_list = models.ForeignKey(PlayList)
-    play = models.ForeignKey(Play)
+    play_list = models.ForeignKey(PlayList, on_delete=models.CASCADE)
+    play = models.ForeignKey(Play, on_delete=models.CASCADE)
     # Note that the order is optional.
     play_list_order = models.IntegerField(null=True, blank=True)
     # endregion
