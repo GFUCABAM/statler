@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
     <script>
 
       // This script makes an API call and displays the returned data
 
       // This string will be filled out by Django when the page is served.
       // It contains the URL to make an API call to
-      var apiEndpointUrl = '{% url 'api:play-list' %}';
+      var apiEndpointUrl = "{% url 'api:play-list' play_list_id %}";
 
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
           // display the returned json dynamically
-          $.each(result, function(index, value){
+          $.each(result, function(i, playEntry){
+            var play = playEntry.play;
+
+            //TODO: display plays in order by playEntry.index
 
             // this indentation helps because it looks a bit like html
             $('#play-list').append(
               //the whole list item is a link to the play description page
-              $('<a/>', {href: 'play/'+value.url_title}).append(
+              $('<a/>', {href: 'play/'+play.url_title}).append(
                 $('<li/>').append(
-                  $('<h1/>').append(value.title),
-                  $('<p/>').append(value.description),
-                  $('<p/>').append('Directed by: ', value.director)
+                  $('<h1/>').append(play.title),
+                  $('<p/>').append(play.description),
+                  $('<p/>').append(
+                    'Directed by: ', play.director,
+                    // &#x2022 is a bullet, which makes a nice separator
+                    ' &#x2022; Actors: ', play.actors,
+                    ' &#x2022; Showtimes: ', play.show_times
+                  )
                 )
               )
             );

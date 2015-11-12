@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--bootstrap old and new support broswers-->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-	<!-- jQuery library -->
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!--bootstrap old and new support broswers-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 
     <script>
 
@@ -17,7 +23,7 @@
 
       // This string will be filled out by Django when the page is served.
       // It contains the URL to make an API call to
-      var apiEndpointUrl = '{% url 'api:play-detail' play_id %}';
+      var apiEndpointUrl = "{% url 'api:play-detail' play_id %}";
 
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
@@ -29,12 +35,42 @@
           $(".header > h1").append(result.title);
           // fill in description
           $('#description').append(
-            $("<p/>").append(result.description),
-            $("<p/>").append("Directed by: ", result.director)
+            $("<p/>").append(result.description)
           );
+          $('#details').append(
+            $("<p/>").append("Directed by: ", result.director),
+            $("<p/>").append("Actors: ", result.actors),
+            $("<p/>").append("Showtimes: ", result.show_times)
+          );
+          // fill in reviews
+          $.each(result.reviews, function(index, review) {
+            $("#review-list").append(
+              $("<li/>").append(review.text)
+            );
+          });
 
         });
       });
+
+      //function for posting review
+      function postReview() {
+        $.ajax({
+          url: "{% url 'api:play-reviews' play_id %}",
+          type: 'post',
+          data: JSON.stringify({text: $("#post_box").val()}),
+          // Set a header containing the crsf token to prevent crsf attacks
+          // django requires this and handles it automatically
+          // see https://docs.djangoproject.com/en/1.8/ref/csrf/#ajax
+          headers: {"X-CSRFToken": "{{ csrf_token }}"},
+          dataType: 'json',
+          success: postCallback
+        });
+      }
+
+      function postCallback(response) {
+        // TODO: replace this with what we want to do when a review is posted
+        alert(JSON.stringify(response));
+      }
 
     </script>
   </head>
@@ -47,13 +83,12 @@
         <h1></h1>
       </div>
       <div id="description"></div>
+      <div id="details"></div>
       <div style="height: 200px; border-style: solid;">
-        Review post box will go here.
+        <textarea id="post_box"></textarea>
+        <button onclick="postReview()">Post</button>
       </div>
       <ul id="review-list">
-        <li>
-          Review text will go here.
-        </li>
       </ul>
     </div>
 

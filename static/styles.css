@@ -54,6 +54,12 @@ body {
   margin: 11px;
 }
 
+#details {
+  margin: 11px;
+  font-size: 10pt;
+  color: #a8a8a8;
+}
+
 ol {
   font-size: 16pt;
 }
@@ -92,4 +98,8 @@ li p {
   height: 100%;
   top: 0px;
   left: 0px;
+}
+
+form, textarea, button {
+  color: black;
 }
