@@ -1,21 +1,18 @@
-from json import JSONEncoder, dumps
+from json import JSONEncoder
 
 from statler_api.models import StatlerModel
 
 
-def encodeDefault(o):
-    """Encode an object: either a StatlerModel instance or an object which is serializable by default."""
+class StatlerEncoder(JSONEncoder):
+    """A JSONEncoder which can handle StatlerModels with an appropriately impelemented getApiFields() method."""
 
-    # Specially handle StatlerModels
-    if isinstance(o, StatlerModel):
-        return o.getApiFields()
+    def default(self, o):
+        """Encode an object: either a StatlerModel instance or an object which is serializable by default."""
 
-    # Otherwise, call the parent implementation.
-    else:
-        return JSONEncoder.default(o)
+        # Specially handle StatlerModels
+        if isinstance(o, StatlerModel):
+            return o.getApiFields()
 
-
-def serializeModel(model):
-    """Serializes a StatlerModel to JSON."""
-
-    return dumps(model, default=encodeDefault)
+        # Otherwise, call the parent implementation.
+        else:
+            return JSONEncoder.default(self, o)
