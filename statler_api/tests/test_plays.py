@@ -1,7 +1,6 @@
 from unittest import expectedFailure
 from django.test import TestCase
-from statler_api.models import PlayDAO
-from statler_api.api_models import Play
+from statler_api.models import Play
 
 
 class PlayTestHelper:
@@ -38,21 +37,21 @@ class PlayTestHelper:
         show_times = "Before they even test plays"
         
     @staticmethod
-    def assertDaoMatchesVals(dao, valClass, asserter):
+    def assertPlayMatchesVals(play, valClass, asserter):
         """ Assert that dao has values matching the valClass, using the TestCase instance asserter."""
-        asserter.assertEquals(dao.url_title, valClass.url_title)
-        asserter.assertEquals(dao.title, valClass.title)
-        asserter.assertEquals(dao.director, valClass.director)
-        asserter.assertEquals(dao.actors, valClass.actors)
-        asserter.assertEquals(dao.description, valClass.description)
+        asserter.assertEquals(play.url_title, valClass.url_title)
+        asserter.assertEquals(play.title, valClass.title)
+        asserter.assertEquals(play.director, valClass.director)
+        asserter.assertEquals(play.actors, valClass.actors)
+        asserter.assertEquals(play.description, valClass.description)
         # asserter.assertEquals(dao.image, valClass.image)
-        asserter.assertEquals(dao.show_times, valClass.show_times)
+        asserter.assertEquals(play.show_times, valClass.show_times)
         
     @staticmethod
-    def makeDao(valClass):
+    def makePlay(valClass):
         """Initiates and returns a play data access object with the values contained in valClass"""
 
-        dao = PlayDAO()
+        dao = Play()
         
         dao.url_title = valClass.url_title
         dao.title = valClass.title
@@ -72,48 +71,48 @@ class PlayDAOTestCase(TestCase):
         """Prepare the class for the next test."""
 
         # Empty test database
-        PlayDAO.objects.all().delete()
+        Play.objects.all().delete()
 
         # Initialize with the prepersisted DAO
-        prepersistedDao = PlayTestHelper.makeDao(PlayTestHelper.PlayPrepersistedVals)
+        prepersistedDao = PlayTestHelper.makePlay(PlayTestHelper.PlayPrepersistedVals)
         prepersistedDao.save()
 
     def testCanGetPlay(self):
         """Test if we can save (in setUp) and get plays, with the expected values"""
         
-        dao = PlayDAO.objects.get(url_title=PlayTestHelper.PlayPrepersistedVals.url_title)
+        dao = Play.objects.get(url_title=PlayTestHelper.PlayPrepersistedVals.url_title)
         
         # Make sure we got something
-        self.assertIsInstance(dao, PlayDAO)
+        self.assertIsInstance(dao, Play)
 
         # Make sure the thing we got matches.
-        PlayTestHelper.assertDaoMatchesVals(dao, PlayTestHelper.PlayPrepersistedVals, self)
+        PlayTestHelper.assertPlayMatchesVals(dao, PlayTestHelper.PlayPrepersistedVals, self)
 
     @expectedFailure
     def testCantGetNonexistentPlay(self):
         """Test that fetching a play which doesn't exist fails."""
 
         # This should throw an exception. Thus, the @expectedFailure annotation.
-        dao = PlayDAO.objects.get(url_title="nonexistent-play")
+        dao = Play.objects.get(url_title="nonexistent-play")
         
     def testCanSavePlays(self):
         """Test if the play can be saved"""
 
-        dao = PlayTestHelper.makeDao(PlayTestHelper.Play1Vals)
+        dao = PlayTestHelper.makePlay(PlayTestHelper.Play1Vals)
 
         # Make sure nothing's screwed up to start with
-        PlayTestHelper.assertDaoMatchesVals(dao, PlayTestHelper.Play1Vals, self)
+        PlayTestHelper.assertPlayMatchesVals(dao, PlayTestHelper.Play1Vals, self)
 
         # Save it!
         dao.save()
 
         # Assert that nothing changed
-        PlayTestHelper.assertDaoMatchesVals(dao, PlayTestHelper.Play1Vals, self)
+        PlayTestHelper.assertPlayMatchesVals(dao, PlayTestHelper.Play1Vals, self)
 
     def testCanRefreshPlaysFromDatabase(self):
         """Test if the play can be updated and the updated version is refreshed from the database"""
 
-        play = PlayDAO()
+        play = Play()
 
         play.director = "Director"
         play.url_title = "URL Title"
@@ -122,57 +121,9 @@ class PlayDAOTestCase(TestCase):
         play.save()
 
         # This updates the title of all plays in the database. This may be a bad idea, but for now it works.
-        PlayDAO.objects.update(title="New Title")
+        Play.objects.update(title="New Title")
 
         play.refresh_from_db()
         self.assertEqual("New Title", play.title)
-
-
-class PlayTestCase(TestCase):
-    """ Testing the plays at the API level, as well as conversion from the DAOs. """
-
-    def testPlayAPIFromDAO(self):
-        """Tests conversion from a playDAO to an API Play"""
-
-        # Populate DAO
-        dao = PlayTestHelper.makeDao(PlayTestHelper.Play1Vals)
-
-        # Convert DAO to API object
-        apiPlay = Play(dao)
-
-        # Compare attributes
-        # TODO: Once images are implemented, test that too.
-        self.assertEqual(apiPlay.url_title, PlayTestHelper.Play1Vals.url_title)
-        self.assertEqual(apiPlay.title, PlayTestHelper.Play1Vals.title)
-        self.assertEqual(apiPlay.director, PlayTestHelper.Play1Vals.director)
-        self.assertEqual(apiPlay.actors, PlayTestHelper.Play1Vals.actors)
-        self.assertEqual(apiPlay.description, PlayTestHelper.Play1Vals.description)
-        # self.assertEqual(apiPlay.image, PlayTestHelper.Play1Vals.image)
-        self.assertEqual(apiPlay.show_times, PlayTestHelper.Play1Vals.show_times)
-
-    def testCanLoadPlayToAPI(self):
-        """Tests saving a play, fetching that play, and creating an API object from the fetched play."""
-
-        # Populate first dao
-        dao1 = PlayTestHelper.makeDao(PlayTestHelper.Play1Vals)
-
-        # Save dao1 to the database
-        dao1.save()
-
-        # Fetch the DAO
-        dao2 = PlayDAO.objects.get(url_title=PlayTestHelper.Play1Vals.url_title)
-
-        # Convert it to an API play
-        apiPlay = Play(dao2)
-
-        # Make sure the values still match.
-        self.assertEqual(apiPlay.url_title, PlayTestHelper.Play1Vals.url_title)
-        self.assertEqual(apiPlay.title, PlayTestHelper.Play1Vals.title)
-        self.assertEqual(apiPlay.director, PlayTestHelper.Play1Vals.director)
-        self.assertEqual(apiPlay.actors, PlayTestHelper.Play1Vals.actors)
-        self.assertEqual(apiPlay.description, PlayTestHelper.Play1Vals.description)
-        # self.assertEqual(apiPlay.image, PlayTestHelper.Play1Vals.image)
-        self.assertEqual(apiPlay.show_times, PlayTestHelper.Play1Vals.show_times)
-
 
 

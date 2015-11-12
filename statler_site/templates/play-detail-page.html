@@ -62,7 +62,7 @@
           // django requires this and handles it automatically
           // see https://docs.djangoproject.com/en/1.8/ref/csrf/#ajax
           headers: {"X-CSRFToken": "{{ csrf_token }}"},
-          dataType: 'json',
+          dataType: "application/json",
           success: postCallback
         });
       }
