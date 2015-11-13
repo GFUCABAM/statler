@@ -1,6 +1,5 @@
 from django.test import TestCase
-from statler_api.models import PlayDAO, PlayListDAO, PlayListEntryDAO
-from statler_api.api_models import Play, PlayList
+from statler_api.models import PlayList, PlayListEntry
 from statler_api.tests.test_plays import PlayTestHelper
 
 
@@ -12,41 +11,40 @@ class PlayListTestCase(TestCase):
     def testHappyCaseConversion(self):
 
         # Create (and save) the PlayListDao we're working with.
-        dao = PlayListDAO()
-        dao.title = "Test Play List"
-        dao.url_title = "test-play-list"
-        dao.save()
+        theList = PlayList()
+        theList.title = "Test Play List"
+        theList.url_title = "test-play-list"
+        theList.save()
 
-        # Create (and save) a pair of plays to populate the DAO
-        playDao1 = PlayTestHelper.makeDao(PlayTestHelper.Play1Vals);
-        playDao2 = PlayTestHelper.makeDao(PlayTestHelper.Play2Vals);
-        playDao1.save()
-        playDao2.save()
+        # Create (and save) a pair of plays to populate the Play
+        play1 = PlayTestHelper.makePlay(PlayTestHelper.Play1Vals);
+        play2 = PlayTestHelper.makePlay(PlayTestHelper.Play2Vals);
+        play1.save()
+        play2.save()
 
         # Create* a pair of entries to bind the plays to the list
-        playListEntryDao1 = PlayListEntryDAO()
-        playListEntryDao1.play = playDao1
-        playListEntryDao1.play_list = dao
-        playListEntryDao1.play_list_order = 1
+        playListEntry1 = PlayListEntry()
+        playListEntry1.play = play1
+        playListEntry1.play_list = theList
+        playListEntry1.play_list_order = 1
 
-        playListEntryDao2 = PlayListEntryDAO()
-        playListEntryDao2.play = playDao2
-        playListEntryDao2.play_list = dao
-        playListEntryDao2.play_list_order = 2
+        playListEntry2 = PlayListEntry()
+        playListEntry2.play = play2
+        playListEntry2.play_list = theList
+        playListEntry2.play_list_order = 2
 
         # *(and save)
-        playListEntryDao1.save()
-        playListEntryDao2.save()
+        playListEntry1.save()
+        playListEntry2.save()
 
         # Update the list, so that it picks up changes
-        dao.refresh_from_db()
+        theList.refresh_from_db()
 
-        # Convert it to an API object
-        apiList = PlayList(dao)
+        # Convert it to API Fields
+        apiList = theList.getApiFields()
 
         # Check things.
-        self.assertEquals(apiList.url_title, dao.url_title)
-        self.assertEquals(len(apiList.entries), 2)
+        self.assertEquals(len(apiList), 2)
         # TODO: Check more things.
 
 
