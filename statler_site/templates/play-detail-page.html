@@ -62,14 +62,23 @@
           // django requires this and handles it automatically
           // see https://docs.djangoproject.com/en/1.8/ref/csrf/#ajax
           headers: {"X-CSRFToken": "{{ csrf_token }}"},
-          dataType: "application/json",
-          success: postCallback
+          // type sent to server
+          contentType: "application/json; charset=UTF-8",
+          // type expected back from server
+          dataType: "json",
+          success: postSuccess,
+          error: postError
         });
       }
 
-      function postCallback(response) {
+      function postSuccess(response) {
         // TODO: replace this with what we want to do when a review is posted
         alert(JSON.stringify(response));
+      }
+
+      function postError(response) {
+        // TODO: replace this with what we want to do when a review post fails
+        alert("There was an error.");
       }
 
     </script>
