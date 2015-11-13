@@ -11,7 +11,7 @@ def getPlayListPage(request):
     to get and display data"""
 
     # 'all'  is the hardcoded play list name for getting all plays
-    return render(request, 'play-list-page.html', {'play_list_id': 'all'})
+    return render(request, 'statler_site/play-list-page.html', {'play_list_id': 'all'})
 
 def getPlayDetailPage(request, play_id):
     """returns an html page which will use JavaScript

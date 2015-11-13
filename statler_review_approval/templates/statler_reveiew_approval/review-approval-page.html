@@ -68,17 +68,17 @@
     <div class="row">
 
         <div class="col-md-6">
-            <h1>Approve {{ playDAO.title }} reviews</h1>
+            <h1>Approve {{ play.title }} reviews</h1>
 
-            {% for reviewDAO in playDAO.reviewdao_set.all %}
-                <div class="row" id="{{ reviewDAO.pk }}">
+            {% for review in play.reviewdao_set.all %}
+                <div class="row" id="{{ review.pk }}">
                     <div class="col-md-2">
-                        <button class="btn btn-default" onclick="makeFirst({{ reviewDAO.pk }})">1</button>
-                        <button class="btn btn-default" onclick="makeSecond({{ reviewDAO.pk }})">2</button>
-                        <button class="btn btn-default" onclick="makeThird({{ reviewDAO.pk }})">3</button>
+                        <button class="btn btn-default" onclick="makeFirst({{ review.pk }})">1</button>
+                        <button class="btn btn-default" onclick="makeSecond({{ review.pk }})">2</button>
+                        <button class="btn btn-default" onclick="makeThird({{ review.pk }})">3</button>
                         <div class=""></div>
                     </div>
-                    <div class="col-md-10 well review-text">{{ reviewDAO.text }}</div>
+                    <div class="col-md-10 well review-text">{{ review.text }}</div>
                 </div>
                 <hr>
 

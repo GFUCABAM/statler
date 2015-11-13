@@ -43,8 +43,8 @@ class Play(models.Model, StatlerModel):
             # TODO: self.rank = ??? (Look this up from DB)
             "rank": None,
 
-            # TODO: Filter to top reviews only.
-            "reviews": list(self.review_set.all())
+            # Filter to top reviews only.
+            "reviews": self.getTopReviews()
         }
     # endregion
 
@@ -66,5 +66,12 @@ class Play(models.Model, StatlerModel):
 
             # Omits reviews.
         }
+
+    def getTopReviews(self):
+        """Returns an ordered list containing the play's top reviews"""
+
+        return list(self.review_set.filter(
+            top_review_rank__isnull=False).order_by(
+            "top_review_rank"))
 
     # endregion

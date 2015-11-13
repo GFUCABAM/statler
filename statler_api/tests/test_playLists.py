@@ -10,7 +10,7 @@ class PlayListTestCase(TestCase):
 
     def testHappyCaseConversion(self):
 
-        # Create (and save) the PlayListDao we're working with.
+        # Create (and save) the PlayList we're working with.
         theList = PlayList()
         theList.title = "Test Play List"
         theList.url_title = "test-play-list"

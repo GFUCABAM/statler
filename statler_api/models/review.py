@@ -13,6 +13,11 @@ class Review(models.Model, StatlerModel):
     text = models.TextField()
     rating = models.FloatField()
     timestamp = models.DateTimeField()
+    top_review_rank = models.IntegerField(null=True, blank=True, default=None)
+
+    class Meta:
+        # Disallow multiple "equally top" reviews on the same play.
+        unique_together = ("play", "top_review_rank")
 
     # TODO Play rating ought to be dealt with at the database level. I'll leave it out for now.
     # play_rating = models.FloatField()
