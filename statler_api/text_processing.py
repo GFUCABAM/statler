@@ -1,5 +1,4 @@
-from django.http import HttpRequest
-import json
+import requests
 
 # Return a positivity rating for a review given the text of the review
 def rateReview(text):
@@ -7,15 +6,15 @@ def rateReview(text):
 
     # make a POST request to the vivekn sentiment API, which returns the sentiment and the API's confidence in that
     # judgment.
-    json_data = HttpRequest.POST("http://sentiment.vivekn.com/api/text", data=text)
-    parsed_data = json.loads(json_data)
+    response = requests.post('http://sentiment.vivekn.com/api/text', data={'txt' : text})
+    response.json()
 
     # if sentiment is positive, return confidence
     # if sentiment is negative, return -confidence
     # if sentiment is neutral, return 0
-    if parsed_data["sentiment"] == "Positive":
-        rating = parsed_data["confidence"]
-    elif parsed_data["sentiment"] == "Negative":
-        rating = -parsed_data["confidence"]
+    if response['sentiment'] == 'Positive':
+        rating = response['confidence']
+    elif response['sentiment'] == 'Negative':
+        rating = -response['confidence']
 
     return rating
