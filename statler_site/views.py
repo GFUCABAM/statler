@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse
 
 def healthCheck(request):
@@ -9,7 +9,9 @@ def healthCheck(request):
 def getPlayListPage(request):
     """returns an html page which will use JavaScript
     to get and display data"""
-    return render_to_response('statler_site/play-list-page.html')
+
+    # 'all'  is the hardcoded play list name for getting all plays
+    return render(request, 'play-list-page.html', {'play_list_id': 'all'})
 
 def getPlayDetailPage(request, play_id):
     """returns an html page which will use JavaScript
