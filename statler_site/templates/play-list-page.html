@@ -279,6 +279,20 @@ word-break: break-all;
 
 
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+    var text_max = 500;
+    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+    $('#textarea').keyup(function() {
+        var text_length = $('#textarea').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+    });
+});
+
+</script>
     <script>
 
       // This script makes an API call and displays the returned data
@@ -322,10 +336,9 @@ word-break: break-all;
                   <div  class="form-title">
                     <h2>Ten Ten Ten</h2>
                          <div class="form-title">Player Review</div>
-                         <textarea class="form-field" type="textfield" name="review"   style ="top: 206px; left: 321px;width:100%;height: 250px;"></textarea><br />
-                                  <div class="submit-container">
-                           <input class="button" type="submit" value="Submit" />
-                          </div>
+                         <textarea class="form-field" type="textfield"  id="textarea"  name="review"  maxlength="500" required style ="top: 206px; left: 321px;width:100%;height: 250px;"></textarea><br />
+												<div id="textarea_feedback"></div>
+                                  <div class="submit-container"><input class="button" type="submit" value="Submit" /></div>
                           </form>
                             <ul id="review-list">
                       </ul>
