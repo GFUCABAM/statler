@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-    <!-- jQuery library -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<style>
+          <html>
+            <head>
+              <meta  content="text/html; charset=utf-8"  http-equiv="content-type">
+              <link  rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+              <link  rel="stylesheet"  href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+              <!-- jQuery library -->
+              <script  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+              <!-- Latest compiled and minified CSS -->
+              <meta name=viewport content='width=700'>
+              <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+              <style>
 .background
 {
 knob
@@ -248,7 +248,7 @@ word-break: break-all;
    }
 .ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
    border-color: #871616 transparent transparent transparent;
-   position: absolute;
+   position:absolute; 
    display: block;
    border-style: solid;
    bottom: -1em;
@@ -279,7 +279,7 @@ word-break: break-all;
 
 
 </style>
-<script type="text/javascript">
+              <script  type="text/javascript">
 $(document).ready(function() {
     var text_max = 500;
     $('#textarea_feedback').html(text_max + ' characters remaining');
@@ -292,8 +292,7 @@ $(document).ready(function() {
     });
 });
 
-</script>
-    <script>
+</script> <script>
 
       // This script makes an API call and displays the returned data
       // This string will be filled out by Django when the page is served.
@@ -324,25 +323,30 @@ $(document).ready(function() {
         });
       });
     </script>
-  </head>
-  <body  class="background">  
-                          </br>
-                         </br>          
-                         <div  style="position:center;">
-               <div  class="ribbon"  style="top: 24px; left: 243px; width: 763px;	z-index: 1;">
-               <div class="ribbon-stitches-top"></div><strong class="ribbon-content"><h1>George Fox Theater </h1></strong><div class="ribbon-stitches-bottom"></div></div></div>
-						<div>
-    <form  class="ribbon"  style="left: 327px; margin-top: 77px; width: 534px; top: 4px;">
-                  <div  class="form-title">
-                    <h2>Ten Ten Ten</h2>
-                         <div class="form-title">Player Review</div>
-                         <textarea class="form-field" type="textfield"  id="textarea"  name="review"  maxlength="500" required style ="top: 206px; left: 321px;width:100%;height: 250px;"></textarea><br />
-												<div id="textarea_feedback"></div>
-                                  <div class="submit-container"><input class="button" type="submit" value="Submit" /></div>
-                          </form>
-                            <ul id="review-list">
-                      </ul>
-    </div></div>
-
-  </body>
-</html>
+            </head>
+            <body  class="background"> <br>
+              <br>
+              <div  class="page-container">
+                <div  class="header"> 
+                <img  class="logo-overlay"  src="/static/gfu-logo.png" style="z-index: 1;">
+                <img  class="centered-image"  src="/static/header-image.png">
+                  <h1></h1>
+                </div>
+                <div  class="ribbon"  style="top: 134px; left: 240px; width: 763px; z-index: 1;">
+                  <div  class="ribbon-stitches-top"></div>
+                  <strong  class="ribbon-content">
+                    <h1>George Fox Theater </h1>
+                  </strong>
+                  <div  class="ribbon-stitches-bottom"></div>
+                </div>
+              </div>
+              <form  class="ribbon"  style="left:327px;margin-top:177px;width:534px;top:4px;">
+                <div  class="form-title">
+                  <h2>Ten Ten Ten</h2>
+                  <div  class="form-title">Player Review</div>
+                  <textarea  class="form-field"  type="textfield"  id="textarea" name="review"  maxlength="500"  required  style="top: 206px; left: 321px;width:100%;height:250px;">
+                   </textarea><br><div  id="textarea_feedback" ></div>
+                  <div  class="submit-container"><input  class="button"  value="Submit" type="submit"></div>  
+    <ul  id="review-list"></ul>
+    </div></form>
+</body></html>
