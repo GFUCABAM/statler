@@ -19,6 +19,8 @@ class Play(models.Model, StatlerModel):
     description = models.CharField(max_length=1024, blank=True)
     image = models.FileField(upload_to="static", blank=True, null=True)
     show_times = models.CharField(max_length=256, blank=True)
+
+    rating = models.FloatField(default=0)
     # endregion
 
     # region Method Overrides

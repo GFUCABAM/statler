@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, TransactionTestCase
 from statler_api.models import Review, Play
 from datetime import datetime
 
