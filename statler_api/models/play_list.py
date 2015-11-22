@@ -40,6 +40,7 @@ class PlayList(models.Model, StatlerModel):
     # endregion
 
     def getOrderedEntries(self):
+        """ Orders the play's contained entries and adjusts the (in-memory) entries' index appropriately. """
 
         allPlays = list(self.playlistentry_set.all())
         orderedPlays = None
@@ -54,13 +55,13 @@ class PlayList(models.Model, StatlerModel):
             orderedPlays = sorted([p for p in allPlays if p.play_list_order], key=lambda p: p.play_list_order)
             unorderedPlays = [p for p in allPlays if not p.play_list_order]
 
-        # Properly order the ordered plays
+        # Properly index the ordered plays
         orderCounter = 1
         for p in orderedPlays:
             p.play_list_order = orderCounter
             orderCounter += 1
 
-        # Properly shuffle the unordered plays
+        # Shuffle and de-index the unordered plays
         for p in unorderedPlays:
             p.play_list_order = None
         random.shuffle(unorderedPlays)
