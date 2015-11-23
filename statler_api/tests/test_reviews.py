@@ -1,6 +1,6 @@
 from django.test import TestCase
 from statler_api.models import Review, Play
-from django.utils import timezone
+from datetime import datetime
 
 from statler_api.tests.test_plays import PlayTestHelper
 
