@@ -6,11 +6,11 @@ def healthCheck(request):
     to confirm the server is on its feet."""
     return HttpResponse("The site is alive.")
 
-def getPlayListPage(request):
+def getPlayListPage(request, play_list_id = 'all'):
     """returns an html page which will use JavaScript
     to get and display data"""
     # 'all'  is the hardcoded play list name for getting all plays
-    return render(request, 'play-list-page.html', {'play_list_id': 'all'})
+    return render(request, 'play-list-page.html', {'play_list_id': play_list_id})
 
 def getPlayDetailPage(request, play_id):
     """returns an html page which will use JavaScript

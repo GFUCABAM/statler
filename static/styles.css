@@ -69,27 +69,30 @@ ul {
   padding-left: 0px;
 }
 
-li {
+.play-list-entry {
+  position: relative;
   border-style: solid;
   border-width: 3px;
   border-color: #7a7a7a;
   margin: 11px;
   padding: 9px;
   padding-bottom: 20px;
-}
-
-ul li {
   font-size: 10pt;
 }
 
-li h1 {
+.play-list-entry h1 {
   font-size: 12pt;
   font-weight: normal;
 }
 
-li p {
+.play-list-entry p {
   font-size: 10pt;
   color: #a8a8a8;
+}
+
+.play-list-entry-index {
+  text-align: center;
+  font-size: 20pt;
 }
 
 .whole-div-link {
@@ -98,6 +101,7 @@ li p {
   height: 100%;
   top: 0px;
   left: 0px;
+  z-index: 1;
 }
 
 form, textarea, button {
