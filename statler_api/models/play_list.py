@@ -47,9 +47,13 @@ class PlayList(models.Model, StatlerModel):
         unorderedPlays = None
 
         if self.is_dynamically_ordered:
-            allPlays.sort(key=lambda p: p.play.rating, reverse=True)
-            orderedPlays = allPlays[:self.num_to_order_dynamically]
-            unorderedPlays = allPlays[self.num_to_order_dynamically:]
+            # Only plays which have been reviewed can be ranked dynamically.
+            reviewedPlays = [p for p in allPlays if p.play.review_set.count() > 0]
+            nonReviewedPlays = [p for p in allPlays if p.play.review_set.count() <= 0]
+
+            reviewedPlays.sort(key=lambda p: p.play.rating, reverse=True)
+            orderedPlays = reviewedPlays[:self.num_to_order_dynamically]
+            unorderedPlays = reviewedPlays[self.num_to_order_dynamically:] + nonReviewedPlays
 
         else:
             orderedPlays = sorted([p for p in allPlays if p.play_list_order], key=lambda p: p.play_list_order)
