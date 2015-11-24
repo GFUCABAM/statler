@@ -1,91 +1,54 @@
-body, h1, p {
-  margin: 0px;
-  padding: 0px;
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-  outline: 0;
-}
-
-body {
-  background-color: #525252;
-  font-family: "Arial", sans-serif;
-  color: white;
-  font-size: 12pt;
-}
-
-.page-container {
-  max-width: 1024px;
-  margin: auto;
-  overflow: hidden;
-}
-
 .header {
-   position: relative;
-   height: 122px;
-}
-
-.centered-image {
-  position: absolute;
-  margin: auto;
-  left: -1000px;
-  right: -1000px;
+background-color:gray;
+background:no-repeat center center;
+background-attachment:scroll;
+-webkit-background-size:cover;
+-moz-background-size:cover;
+background-size:cover;
+-o-background-size:cover;
+margin-bottom:50px;
+min-height: 140px;
 }
 
 .logo-overlay {
-  position: absolute;
-  right: 35px;
-  top: 28px;
+  float: right;
+  padding-right: 35px;
+  padding-top: 32px;
+  padding-bottom: 20px;
 }
 
 .header h1 {
-  position: absolute;
-  left: 30px;
-  top: 20px;
+  margin: 0;
+  padding-left: 60px;
+  padding-top: 30px;
+  padding-bottom: 20px;
   font-family: "Accord Light SF", "Book Antiqua", serif;
   font-size: 48pt;
   font-weight: normal;
   color: black;
+  text-shadow: 0 0 20px #ffffff;
 }
 
-#description {
-  margin: 11px;
-}
-
-#details {
-  margin: 11px;
-  font-size: 10pt;
-  color: #a8a8a8;
-}
-
-ol {
-  font-size: 16pt;
-}
-
-ul {
-  list-style-type: none;
-  padding-left: 0px;
-}
-
-.play-list-entry, .top-review {
-  position: relative;
-  border-style: solid;
-  border-width: 3px;
-  border-color: #7a7a7a;
-  margin: 11px;
-  padding: 9px;
-  padding-bottom: 20px;
-  font-size: 10pt;
-}
-
-.play-list-entry h1 {
+.panel {
+  color: white;
   font-size: 12pt;
-  font-weight: normal;
 }
 
-.play-list-entry p {
+.my-panel {
+  position: relative; /* parent of a .whole-div-link must be relative*/
+  border: 1px solid #7a7a7a;
+  padding: 9px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.my-panel h1 {
+  font-size: 16pt;
+  font-weight: normal;
+  margin-top: 0px;
+}
+
+.my-panel p {
   font-size: 10pt;
   color: #a8a8a8;
 }
@@ -104,18 +67,37 @@ ul {
   z-index: 1;
 }
 
+#description, #review-list > p {
+  font-size: 14pt;
+  color: white;
+}
+
+#details {
+  font-size: 10pt;
+  color: #a8a8a8;
+}
+
+#post-box-div, #details {
+  padding-bottom: 40px;
+}
+
+.play-list-image {
+  float: left;
+  margin-right: 15px;
+  width: 80px;
+  height: 80px;
+}
+
 form, textarea, button {
   color: black;
 }
 
 textarea {
   resize: none;
-  background-color: #c3c3c3;
   width:100%;
-  height:200px;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 9px;
+  height:150px;
+  font-size: 12pt;
+  padding: 10px;
 }
 
 button {
@@ -143,31 +125,4 @@ button:hover {
   border-color: #3d5691;
   background: #3d5691;
   color: #b8b8b8;
-}
-
-.error-message {
-  border: 2px solid #990000;
-  background: #ff9999;
-  border-radius: 5px;
-  color: #990000;
-  margin: 11px;
-  padding: 9px;
-}
-
-.status-message {
-  border: 2px solid #000066;
-  background: #ccccff;
-  border-radius: 5px;
-  color: #000066;
-  margin: 11px;
-  padding: 9px;
-}
-
-.posted-text {
-  border: 2px solid white;
-  border-radius: 3px;
-  color: white;
-  height: 200px;
-  margin: 11px;
-  padding: 9px;
 }
