@@ -1,91 +1,54 @@
-body, h1, p {
-  margin: 0px;
-  padding: 0px;
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-  outline: 0;
-}
-
-body {
-  background-color: #525252;
-  font-family: "Arial", sans-serif;
-  color: white;
-  font-size: 12pt;
-}
-
-.page-container {
-  max-width: 1024px;
-  margin: auto;
-  overflow: hidden;
-}
-
 .header {
-   position: relative;
-   height: 122px;
-}
-
-.centered-image {
-  position: absolute;
-  margin: auto;
-  left: -1000px;
-  right: -1000px;
+background-color:gray;
+background:no-repeat center center;
+background-attachment:scroll;
+-webkit-background-size:cover;
+-moz-background-size:cover;
+background-size:cover;
+-o-background-size:cover;
+margin-bottom:50px;
+min-height: 140px;
 }
 
 .logo-overlay {
-  position: absolute;
-  right: 35px;
-  top: 28px;
+  float: right;
+  padding-right: 35px;
+  padding-top: 32px;
+  padding-bottom: 20px;
 }
 
 .header h1 {
-  position: absolute;
-  left: 30px;
-  top: 20px;
+  margin: 0;
+  padding-left: 60px;
+  padding-top: 30px;
+  padding-bottom: 20px;
   font-family: "Accord Light SF", "Book Antiqua", serif;
   font-size: 48pt;
   font-weight: normal;
   color: black;
+  text-shadow: 0 0 20px #ffffff;
 }
 
-#description {
-  margin: 11px;
-}
-
-#details {
-  margin: 11px;
-  font-size: 10pt;
-  color: #a8a8a8;
-}
-
-ol {
-  font-size: 16pt;
-}
-
-ul {
-  list-style-type: none;
-  padding-left: 0px;
-}
-
-.play-list-entry, .top-review {
-  position: relative;
-  border-style: solid;
-  border-width: 3px;
-  border-color: #7a7a7a;
-  margin: 11px;
-  padding: 9px;
-  padding-bottom: 20px;
-  font-size: 10pt;
-}
-
-.play-list-entry h1 {
+.panel {
+  color: white;
   font-size: 12pt;
-  font-weight: normal;
 }
 
-.play-list-entry p {
+.my-panel {
+  position: relative; /* parent of a .whole-div-link must be relative*/
+  border: 1px solid #7a7a7a;
+  padding: 9px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.my-panel h1 {
+  font-size: 16pt;
+  font-weight: normal;
+  margin-top: 0px;
+}
+
+.my-panel p {
   font-size: 10pt;
   color: #a8a8a8;
 }
@@ -104,6 +67,111 @@ ul {
   z-index: 1;
 }
 
+#description, #review-list > p {
+  font-size: 14pt;
+  color: white;
+}
+
+#details {
+  font-size: 10pt;
+  color: #a8a8a8;
+}
+
+#post-box-div, #details {
+  padding-bottom: 20px;
+}
+
+.play-list-image {
+  float: left;
+  margin-right: 15px;
+  width: 80px;
+  height: 80px;
+}
+
 form, textarea, button {
   color: black;
+}
+
+textarea {
+  resize: none;
+  width:100%;
+  height:150px;
+  font-size: 12pt;
+  padding: 10px;
+}
+
+button {
+  border: 1px solid #3a4f86;
+  background: #3d5691;
+  background: -webkit-gradient(linear, left top, left bottom, from(#6186d4), to(#3d5691));
+  background: -webkit-linear-gradient(top, #6186d4, #3d5691);
+  background: -moz-linear-gradient(top, #6186d4, #3d5691);
+  background: -ms-linear-gradient(top, #6186d4, #3d5691);
+  background: -o-linear-gradient(top, #6186d4, #3d5691);
+  padding: 4px 8px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: white;
+  font-size: 16px;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 10px;
+}
+
+button:hover {
+  border-color: #3d5691;
+  background: #3d5691;
+  color: #b8b8b8;
+}
+
+.landing-page-text {
+  font-size: 16pt;
+  font-style: italic;
+  font-family: "Accord Light SF", "Book Antiqua", serif;
+  color: white;
+}
+
+.landing-page-text a {
+  color: inherit;
+}
+
+.landing-page-list-box {
+  border: 3px solid white;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  padding: 10px;
+  background-color: #222222;
+  border-radius: 5px;
+}
+
+.landing-page-list {
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+.landing-page-play-entry {
+  margin: 20px;
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  font-size: 12pt;
+  vertical-align: top;
+}
+
+.landing-page-list-box img {
+  width: 120px;
+  height: 120px;
+}
+
+.landing-page-button {
+  border: 3px solid white;
+  border-radius: 5px;
+  font-size: 20pt;
+  font-style: normal;
+  font-family: "Accord Light SF", "Book Antiqua", serif;
+  padding: 5px;
 }
