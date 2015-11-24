@@ -69,7 +69,7 @@ ul {
   padding-left: 0px;
 }
 
-.play-list-entry {
+.play-list-entry, .top-review {
   position: relative;
   border-style: solid;
   border-width: 3px;

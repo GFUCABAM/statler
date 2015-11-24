@@ -45,7 +45,7 @@
           // fill in reviews
           $.each(result.reviews, function(index, review) {
             $("#review-list").append(
-              $("<li/>").append(review.text)
+              $('<li class="top-review"/>').append(review.text)
             );
           });
 
