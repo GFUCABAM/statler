@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- /Bootstrap -->
+
     <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
 
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
@@ -24,24 +32,28 @@
           // display the returned json dynamically
           $.each(result, function(i, playEntry){
             var play = playEntry.play;
+            var index = playEntry.index;
 
             //TODO: display plays in order by playEntry.index
 
             // this indentation helps because it looks a bit like html
             $('#play-list').append(
               //the whole list item is a link to the play description page
-              $('<a/>', {href: 'play/'+play.url_title}).append(
-                $('<li/>').append(
-                  $('<h1/>').append(play.title),
-                  $('<p/>').append(play.description),
-                  $('<p/>').append(
-                    'Directed by: ', play.director,
-                    // &#x2022 is a bullet, which makes a nice separator
-                    ' &#x2022; Actors: ', play.actors,
-                    ' &#x2022; Showtimes: ', play.show_times
-                  )
+
+                $('<div class="play-list-entry row"/>').append(
+                  $('<div class="play-list-entry-index col-sm-1" />').append(index),
+                  $('<div class="play-list-entry-play col-sm-11" />').append(
+                    $('<h1/>').append(play.title),
+                    $('<p/>').append(play.description),
+                    $('<p/>').append(
+                      'Directed by: ', play.director,
+                      // &#x2022 is a bullet, which makes a nice separator
+                      ' &#x2022; Actors: ', play.actors,
+                      ' &#x2022; Showtimes: ', play.show_times
+                    )
+                  ),
+                  $('<a class="whole-div-link" href="/play/' + play.url_title + '/"/>')
                 )
-              )
             );
 
           });
@@ -52,14 +64,14 @@
   </head>
   <body>
     
-    <div class="page-container">
+    <div class="container">
       <div class="header">
         <img class="centered-image" src="/static/header-image.png"/>
         <img class="logo-overlay" src="/static/gfu-logo.png"/>
         <h1>Ten! Ten! Ten!</h1>
       </div>
-      <ol id="play-list" type="1">
-      </ol>
+      <div id="play-list" class="container">
+      </div>
     </div>
 
   </body>
