@@ -57,7 +57,7 @@
         $.ajax({
           url: "{% url 'api:play-reviews' play_id %}",
           type: 'post',
-          data: JSON.stringify({text: $("#post_box").val()}),
+          data: JSON.stringify({text: $("#post-box").val()}),
           // Set a header containing the crsf token to prevent crsf attacks
           // django requires this and handles it automatically
           // see https://docs.djangoproject.com/en/1.8/ref/csrf/#ajax
@@ -72,13 +72,23 @@
       }
 
       function postSuccess(response) {
-        // TODO: replace this with what we want to do when a review is posted
-        alert(JSON.stringify(response));
+        $("#post-box-div").html(
+          $("<div/>", {class: "status-message"}).append(
+            "Thank you for reviewing this play. Your review has been recorded."
+          )
+        ).append(
+          $("<div/>", {class: "posted-text"}).append(
+            response.text
+          )
+        );
       }
 
       function postError(response) {
-        // TODO: replace this with what we want to do when a review post fails
-        alert("There was an error.");
+        $("#post-box-div").prepend(
+          $("<div/>", {class: "error-message"}).append(
+            "An error occured while posting your review."
+          )
+        );
       }
 
     </script>
@@ -93,9 +103,11 @@
       </div>
       <div id="description"></div>
       <div id="details"></div>
-      <div style="height: 200px; border-style: solid;">
-        <textarea style="width:100%; height:100%;" id="post_box"></textarea>
-        <button onclick="postReview()">Post</button>
+      <div id="post-box-div">
+        <textarea id="post-box"></textarea>
+        <div style="text-align: right">
+          <button onclick="postReview()">Post</button>
+        </div>
       </div>
       <ul id="review-list">
       </ul>
