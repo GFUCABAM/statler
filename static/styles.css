@@ -126,3 +126,52 @@ button:hover {
   background: #3d5691;
   color: #b8b8b8;
 }
+
+.landing-page-text {
+  font-size: 16pt;
+  font-style: italic;
+  font-family: "Accord Light SF", "Book Antiqua", serif;
+  color: white;
+}
+
+.landing-page-text a {
+  color: inherit;
+}
+
+.landing-page-list-box {
+  border: 3px solid white;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  padding: 10px;
+  background-color: #222222;
+  border-radius: 5px;
+}
+
+.landing-page-list {
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+.landing-page-play-entry {
+  margin: 20px;
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  font-size: 12pt;
+  vertical-align: top;
+}
+
+.landing-page-list-box img {
+  width: 120px;
+  height: 120px;
+}
+
+.landing-page-button {
+  border: 3px solid white;
+  border-radius: 5px;
+  font-size: 20pt;
+  font-style: normal;
+  font-family: "Accord Light SF", "Book Antiqua", serif;
+  padding: 5px;
+}
