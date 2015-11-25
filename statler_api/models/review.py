@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from datetime import datetime
 
 from statler_api.models import Play, StatlerModel
@@ -12,7 +12,7 @@ class Review(models.Model, StatlerModel):
     play = models.ForeignKey(Play)
     text = models.TextField()
     rating = models.FloatField()
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(auto_now=True)
     top_review_rank = models.IntegerField(null=True, blank=True, default=None)
 
     class Meta:
@@ -43,16 +43,34 @@ class Review(models.Model, StatlerModel):
     def createFromText(text, playUrlTitle):
         """ Creates and saves a review from the passed text and playUrlTitle, setting other fields appropriately."""
 
-
         # Create the new review
         newReview = Review()
         newReview.text = text
-        newReview.timestamp = datetime.now()
+        # This shiould be handled at the DB level.
+        # newReview.timestamp = datetime.now()
         newReview.rating = text_processing.rateReview(text)
         newReview.play = Play.objects.get(url_title=playUrlTitle)
+        # newReview.playRatingSum = None
+        # newReview.playReviewCount = None
 
         # Save it
-        newReview.save()
+        with transaction.atomic():
+
+            # Lock the play
+            newReview.play = Play.objects.select_for_update().get(url_title=playUrlTitle)
+
+            # Ensure the new review is accounted for.
+            newReview.save()
+
+            playRatingQuery = newReview.play.review_set.aggregate(play_rating=models.Avg("rating"))
+            newReview.play.rating = playRatingQuery["play_rating"]
+            newReview.play.save()
+
+            # lastReview = newReview.play.review_set.latest(field_name="timestamp")
+            #
+            # newReview.playRatingSum = lastReview.playRatingSum + newReview.rating
+            # newReview.playReviewCount = lastReview.playReviewCount + 1
+
 
         # Give back the (now saved) review.
         return newReview

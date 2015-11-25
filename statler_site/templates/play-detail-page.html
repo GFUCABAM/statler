@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "statler-base-page.html" %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <!--bootstrap old and new support broswers-->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-    <!-- jQuery library -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-
-    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
-
-    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-
+{% block page-script %}
     <script>
 
       // This script makes an API call and displays the returned data
@@ -45,7 +29,9 @@
           // fill in reviews
           $.each(result.reviews, function(index, review) {
             $("#review-list").append(
-              $("<li/>").append(review.text)
+              $('<div class="panel my-panel"/>').append(
+                review.text
+              )
             );
           });
 
@@ -57,7 +43,7 @@
         $.ajax({
           url: "{% url 'api:play-reviews' play_id %}",
           type: 'post',
-          data: JSON.stringify({text: $("#post_box").val()}),
+          data: JSON.stringify({text: $("#post-box").val()}),
           // Set a header containing the crsf token to prevent crsf attacks
           // django requires this and handles it automatically
           // see https://docs.djangoproject.com/en/1.8/ref/csrf/#ajax
@@ -72,34 +58,44 @@
       }
 
       function postSuccess(response) {
-        // TODO: replace this with what we want to do when a review is posted
-        alert(JSON.stringify(response));
+        $("#post-box-div").html(
+          $('<div class="panel panel-success"/>').append(
+            $('<div class="panel-heading"/>').append(
+              "Thank you for reviewing this play. Your review has been recorded."
+            )
+          ).append(
+            $('<div class="panel-body"/>').append(
+              response.text
+            )
+          )
+        );
       }
 
       function postError(response) {
-        // TODO: replace this with what we want to do when a review post fails
-        alert("There was an error.");
+        $("#post-box-div").prepend(
+          $('<div class="alert alert-danger"/>').append(
+            "An error occured while posting your review."
+          )
+        );
       }
 
     </script>
-  </head>
-  <body>
-    
-    <div class="page-container">
-      <div class="header">
-        <img class="centered-image" src="/static/header-image.png">
-        <img class="logo-overlay" src="/static/gfu-logo.png"/>
-        <h1></h1>
-      </div>
+{% endblock %}
+
+{% block header-title %}{% comment This will get filled in by AJAX %}{% endcomment %}{% endblock %}
+
+{% block main-content %}
+    <div class="container">
       <div id="description"></div>
       <div id="details"></div>
-      <div style="height: 200px; border-style: solid;">
-        <textarea id="post_box"></textarea>
-        <button onclick="postReview()">Post</button>
+      <div id="post-box-div">
+        <textarea id="post-box"></textarea>
+        <div style="text-align: right">
+          <button onclick="postReview()">Post</button>
+        </div>
       </div>
-      <ul id="review-list">
-      </ul>
+      <div id="review-list">
+        <p>Top Reviews:</p>
+      </div>
     </div>
-
-  </body>
-</html>
+{% endblock %}

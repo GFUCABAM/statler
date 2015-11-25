@@ -1,6 +1,6 @@
 # statler
 
-The beginnings of awesome.
+The beginnings of awesome!
 
 *We're underway!*
 
