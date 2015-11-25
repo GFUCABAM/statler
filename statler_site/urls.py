@@ -9,8 +9,10 @@ urlpatterns = [
 
     # urls that look like 'play/<play_id>/'
     url(r'^play/(?P<play_id>[^,/]+)/$', views.getPlayDetailPage, name='play-detail'),
-    
-    # blank urls are forwarded to
-    # the views.getPlayListPage function
-    url(r'^$', views.getPlayListPage, name='play-list'),
+
+    # urls that look like 'play-list/<play_list_id>/'
+    url(r'^play-list/(?P<play_list_id>[^,/]+)/$', views.getPlayListPage, name='play-list'),
+
+    # blank urls are forwarded to the getLandingPage function
+    url(r'^$', views.getLandingPage, name='play-list'),
 ]

@@ -5,6 +5,10 @@ from statler_api.models import StatlerModel
 
 class Play(models.Model, StatlerModel):
     """Represents a single performance in the database.
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/dev
     The class/table contains static data regarding the performance. Data that will
     change over time will be store elsewhere."""
 

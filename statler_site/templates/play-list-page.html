@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
           <html>
             <head>
               <meta  content="text/html; charset=utf-8"  http-equiv="content-type">
@@ -104,6 +105,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
   -o-transition: all 40ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 40ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+=======
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <link href="/static/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <script>
+>>>>>>> refs/remotes/origin/dev
 
 .button:active
  {
@@ -297,12 +315,18 @@ $(document).ready(function() {
       // This script makes an API call and displays the returned data
       // This string will be filled out by Django when the page is served.
       // It contains the URL to make an API call to
+<<<<<<< HEAD
       var apiEndpointUrl = '{% url 'api:play-detail' play_id %}';
+=======
+      var apiEndpointUrl = "{% url 'api:play-list' play_list_id %}";
+
+>>>>>>> refs/remotes/origin/dev
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
           // display the returned json dynamically
+<<<<<<< HEAD
           // fill in page title
           $(".header > h1").append(result.title);
           // fill in description
@@ -318,11 +342,39 @@ $(document).ready(function() {
           $.each(result.reviews, function(index, review) {
             $("#review-list").append(
               $("<li/>").append(review.text)
+=======
+          $.each(result, function(i, playEntry){
+            var play = playEntry.play;
+            var index = playEntry.index;
+
+            //TODO: display plays in order by playEntry.index
+
+            // this indentation helps because it looks a bit like html
+            $('#play-list').append(
+              //the whole list item is a link to the play description page
+                $('<div class="row panel my-panel"/>').append(
+                  $('<div class="play-list-entry-index col-sm-1" />').append(
+                    index
+                  ),
+                  $('<div class="col-sm-10" />').append(
+                    $('<img/>', {class: "play-list-image", src: '/' + play.image_url}),
+                    $('<h1/>').append(play.title),
+                    $('<p/>').append(
+                      'Directed by: ', play.director,
+                      // &#x2022 is a bullet, which makes a nice separator
+                      ' &#x2022; Actors: ', play.actors,
+                      ' &#x2022; Showtimes: ', play.show_times
+                    )
+                  ),
+                  $('<a class="whole-div-link" href="/play/' + play.url_title + '/"/>')
+                )
+>>>>>>> refs/remotes/origin/dev
             );
           });
         });
       });
     </script>
+<<<<<<< HEAD
             </head>
             <body  class="background"> <br>
               <br>
@@ -351,3 +403,19 @@ $(document).ready(function() {
     <ul  id="review-list"></ul>
     </div></form>
 </body></html>
+=======
+  </head>
+  <body>
+    
+    <div class="header" style="background-image:url('/static/header-image.png');">
+      <img class="logo-overlay" src="/static/gfu-logo.png"/>
+      <h1>Ten! Ten! Ten!</h1>
+    </div>
+    <div class="container">
+      <div id="play-list" class="container">
+      </div>
+    </div>
+
+  </body>
+</html>
+>>>>>>> refs/remotes/origin/dev

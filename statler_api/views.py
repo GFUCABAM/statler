@@ -1,45 +1,47 @@
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.core import serializers
 import json
-from .models import *
-from .api_models import *
+
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.utils import html
+
+from .statler_json import StatlerEncoder
+from .models import Play, PlayList, Review
 
 
 def healthCheck(request):
     """Returns a string. This shouldn't break. We can use this
     to confirm the server is on its feet."""
     
-    return HttpResponse("The API is alive.")
+    return JsonResponse(["The API is alive."], safe=False)
 
 
-def getPlayList(request):
+def getPlayList(request, play_list_id):
     """called when a GET request is sent to /api/play-list/
     returns json of the list of plays
     see https://docs.djangoproject.com/en/1.8/topics/serialization/"""
-    #TODO: get an actual PlayList object instead of all plays
 
-    aPlayDictList = [vars(Play(x)) for x in PlayDAO.objects.all()]
-
-    # Remove reviews from each play dict, because we aren't going
-    # that deep in the object graph
-    for aPlayDict in aPlayDictList:
-        del aPlayDict["reviews"]
-        
-    return HttpResponse(json.dumps(aPlayDictList))
+    playList = get_object_or_404(PlayList, url_title=play_list_id)
+    return JsonResponse(playList, encoder=StatlerEncoder, safe=False)
     
 
 def getPlayDetail(request, play_id):
     """called when a GET request is sent to /api/play/<play_id>
     returns json for the play"""
     
-    play = vars(Play(get_object_or_404(PlayDAO, url_title=play_id)))
+    play = get_object_or_404(Play, url_title=play_id)
+    return JsonResponse(play, encoder=StatlerEncoder, safe=False)
 
-    # Convert reviews to dicts so they will serialize
-    reviews = play["reviews"]
-    for i in range(len(reviews)):
-        reviews[i] = vars(reviews[i])
-        # convert timestamps to iso strings so they will serialize
-        reviews[i]["timestamp"] = reviews[i]["timestamp"].isoformat()
-    
-    return HttpResponse(json.dumps(play))
+
+def postReview(request, play_id):
+    """called when a POST request is sent to /api/play/<play_id>/reviews
+    returns json for the review added"""
+
+    # html.escape should prevent cross-site scripting attacks
+    incomingData = json.loads(request.body.decode('utf-8'))
+    reviewText = html.escape(incomingData["text"])
+
+    # Creates and saves a review.
+    review = Review.createFromText(reviewText, play_id)
+
+    # return the review object created. 201 status code denotes "created"
+    return JsonResponse(review, encoder=StatlerEncoder, safe=False, status=201)

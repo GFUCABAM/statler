@@ -33,6 +33,10 @@ class PlayList(models.Model, StatlerModel):
 
     def getApiFields(self):
         """Gets fields for API serialization
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/dev
         Note that PlayList serializes as an array of nodes, not as a dictionary."""
 
         return self.getOrderedEntries()
@@ -71,3 +75,7 @@ class PlayList(models.Model, StatlerModel):
 
         # Concatenate results.
         return orderedPlays + unorderedPlays
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/dev

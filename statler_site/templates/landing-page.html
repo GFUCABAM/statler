@@ -14,12 +14,22 @@
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 
     <script>
+<<<<<<< HEAD
       // This script makes an API call and displays the returned data
+=======
+
+      // This script makes an API call and displays the returned data
+
+>>>>>>> refs/remotes/origin/dev
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
         fillInList("/api/play-list/night-1/", "#play-list-night-1");
         fillInList("/api/play-list/night-2/", "#play-list-night-2");
       });
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/dev
       function fillInList(getURL, divId) {
         // Get JSON from a URL as an object
         $.getJSON(getURL, function(result){
@@ -27,7 +37,13 @@
           $.each(result, function(i, playEntry){
             var play = playEntry.play;
             var index = playEntry.index;
+<<<<<<< HEAD
             // TODO: order plays in some way?
+=======
+
+            // TODO: order plays in some way?
+
+>>>>>>> refs/remotes/origin/dev
             $(divId).append(
               $('<div class="landing-page-play-entry" />').append(
                 $('<a />', {href: '/play/' + play.url_title}).append(
@@ -41,9 +57,17 @@
                 )
               )
             );
+<<<<<<< HEAD
           });
         });
       }
+=======
+
+          });
+        });
+      }
+
+>>>>>>> refs/remotes/origin/dev
     </script>
   </head>
   <body>
