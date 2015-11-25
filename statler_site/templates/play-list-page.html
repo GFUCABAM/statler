@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "statler-base-page.html" %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <link href="/static/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
-
-    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-
+{% block page-script %}
     <script>
 
       // This script makes an API call and displays the returned data
@@ -58,17 +46,11 @@
       });
 
     </script>
-  </head>
-  <body>
-    
-    <div class="header" style="background-image:url('/static/header-image.png');">
-      <img class="logo-overlay" src="/static/gfu-logo.png"/>
-      <h1>Ten! Ten! Ten!</h1>
-    </div>
+{% endblock %}
+
+{% block main-content %}
     <div class="container">
       <div id="play-list" class="container">
       </div>
     </div>
-
-  </body>
-</html>
+{% endblock %}
