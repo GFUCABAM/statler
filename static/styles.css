@@ -1,13 +1,14 @@
 .header {
-background-color:gray;
-background:no-repeat center center;
-background-attachment:scroll;
--webkit-background-size:cover;
--moz-background-size:cover;
-background-size:cover;
--o-background-size:cover;
-margin-bottom:50px;
-min-height: 140px;
+  background-color:gray;
+  background:no-repeat center center;
+  background-attachment:scroll;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  background-size:cover;
+  -o-background-size:cover;
+  margin-bottom:50px;
+  min-height: 140px;
+  padding-top: 50px;
 }
 
 .logo-overlay {
