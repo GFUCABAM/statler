@@ -1,0 +1,7 @@
+C:\Users\ben\Documents\GitHub\statler\bin\Microsoft.PythonTools.WebRole.dll
+C:\Users\ben\Documents\GitHub\statler\bin\AzureSetup.cfg
+C:\Users\ben\Documents\GitHub\statler\bin\wfastcgi.py
+C:\Users\ben\Documents\GitHub\statler\obj\Release\deployment-updated-pyvenv.cfg
+C:\Users\ben\Documents\GitHub\statler\ptvs_virtualenv_proxy.py
+C:\Users\ben\Documents\GitHub\statler\obj\Release\web.config
+C:\Users\ben\Documents\GitHub\statler\obj\Release\web.debug.config

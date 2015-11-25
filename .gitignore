@@ -8,3 +8,7 @@ __pycache__
 
 # PyCharm Files
 .idea/**
+
+# python environments
+env/**
+env1/**

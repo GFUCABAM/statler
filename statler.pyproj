@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2b4e5314-3d8f-4681-b7ad-e720034f628b}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <InterpreterId>{d4e0e09b-c37d-482e-80cf-517e139ea35e}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <NameOfLastUsedPublishProfile>StatlerBeta</NameOfLastUsedPublishProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="manage.py" />
+    <Compile Include="statler\settings.py" />
+    <Compile Include="statler\urls.py" />
+    <Compile Include="statler\wsgi.py" />
+    <Compile Include="statler\__init__.py" />
+    <Compile Include="statler_api\admin.py" />
+    <Compile Include="statler_api\migrations\0001_initial.py" />
+    <Compile Include="statler_api\migrations\0002_playlist_plays.py" />
+    <Compile Include="statler_api\migrations\0003_auto_20151112_1739.py" />
+    <Compile Include="statler_api\migrations\0004_auto_20151119_1438.py" />
+    <Compile Include="statler_api\migrations\__init__.py" />
+    <Compile Include="statler_api\models\play.py" />
+    <Compile Include="statler_api\models\play_list.py" />
+    <Compile Include="statler_api\models\play_list_entry.py" />
+    <Compile Include="statler_api\models\review.py" />
+    <Compile Include="statler_api\models\statler_model.py" />
+    <Compile Include="statler_api\models\__init__.py" />
+    <Compile Include="statler_api\statler_json.py" />
+    <Compile Include="statler_api\tests\test_playLists.py" />
+    <Compile Include="statler_api\tests\test_plays.py" />
+    <Compile Include="statler_api\tests\test_reviews.py" />
+    <Compile Include="statler_api\tests\test_text_processing.py" />
+    <Compile Include="statler_api\tests\__init__.py" />
+    <Compile Include="statler_api\text_processing.py" />
+    <Compile Include="statler_api\urls.py" />
+    <Compile Include="statler_api\views.py" />
+    <Compile Include="statler_api\__init__.py" />
+    <Compile Include="statler_site\tests.py" />
+    <Compile Include="statler_site\urls.py" />
+    <Compile Include="statler_site\views.py" />
+    <Compile Include="statler_site\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\ConfigureCloudService.ps1" />
+    <Content Include="bin\ps.cmd" />
+    <Content Include="bin\Readme.mht">
+      <SubType>WebBrowser</SubType>
+    </Content>
+    <Content Include="requirements.txt" />
+    <Content Include="static\bootstrap.css" />
+    <Content Include="static\favicon.ico" />
+    <Content Include="static\gfu-logo.png" />
+    <Content Include="static\header-image.png" />
+    <Content Include="static\play-image-placeholder.png" />
+    <Content Include="static\styles.css" />
+    <None Include="StatlerBeta.pubxml" />
+    <Content Include="web.config" />
+    <Content Include="statler_site\templates\landing-page.html" />
+    <Content Include="statler_site\templates\play-detail-page.html" />
+    <Content Include="statler_site\templates\play-list-page.html" />
+    <Content Include="statler_site\templates\statler-base-page.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="static" />
+    <Folder Include="statler" />
+    <Folder Include="statler_api" />
+    <Folder Include="statler_api\migrations" />
+    <Folder Include="statler_api\models" />
+    <Folder Include="statler_api\tests" />
+    <Folder Include="statler_site" />
+    <Folder Include="statler_site\templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env1\">
+      <Id>{d4e0e09b-c37d-482e-80cf-517e139ea35e}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>3.4</Version>
+      <Description>env1 (Python 3.4)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+    <Interpreter Include="env\">
+      <Id>{7290bb34-bb62-4a17-b743-383db48faf4f}</Id>
+      <BaseInterpreter>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</BaseInterpreter>
+      <Version>3.4</Version>
+      <Description>env (Python 64-bit 3.4)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>Amd64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60862/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>True</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
