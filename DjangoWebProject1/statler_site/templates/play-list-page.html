@@ -1,0 +1,56 @@
+{% extends "statler-base-page.html" %}
+
+{% block page-script %}
+    <script>
+
+      // This script makes an API call and displays the returned data
+
+      // This string will be filled out by Django when the page is served.
+      // It contains the URL to make an API call to
+      var apiEndpointUrl = "{% url 'api:play-list' play_list_id %}";
+
+      // jQuery code normally starts with the .ready function
+      $(document).ready(function(){
+        // Get JSON from a URL as an object
+        $.getJSON(apiEndpointUrl, function(result){
+          // display the returned json dynamically
+          $.each(result, function(i, playEntry){
+            var play = playEntry.play;
+            var index = playEntry.index;
+
+            //TODO: display plays in order by playEntry.index
+
+            // this indentation helps because it looks a bit like html
+            $('#play-list').append(
+              //the whole list item is a link to the play description page
+                $('<div class="row panel my-panel"/>').append(
+                  $('<div class="play-list-entry-index col-sm-1" />').append(
+                    index
+                  ),
+                  $('<div class="col-sm-10" />').append(
+                    $('<img/>', {class: "play-list-image", src: '/' + play.image_url}),
+                    $('<h1/>').append(play.title),
+                    $('<p/>').append(
+                      'Directed by: ', play.director,
+                      // &#x2022 is a bullet, which makes a nice separator
+                      ' &#x2022; Actors: ', play.actors,
+                      ' &#x2022; Showtimes: ', play.show_times
+                    )
+                  ),
+                  $('<a class="whole-div-link" href="/play/' + play.url_title + '/"/>')
+                )
+            );
+
+          });
+        });
+      });
+
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <div class="container">
+      <div id="play-list" class="container">
+      </div>
+    </div>
+{% endblock %}
