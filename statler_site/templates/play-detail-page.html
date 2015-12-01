@@ -18,6 +18,9 @@
           // fill in page title
           $(".header > h1").append(result.title);
           // fill in description
+          $('#play-image-div').append(
+            $('<img/>', {width: '120', height: '120', src: '/' + result.image_url})
+          );
           $('#description').append(
             $("<p/>").append(result.description)
           );
@@ -34,6 +37,10 @@
               )
             );
           });
+          // Add a heading saying 'Top Reviews:' only if there are some
+          if (result.reviews.length > 0) {
+            $('#top-reviews').html('Top Reviews:');
+          }
 
         });
       });
@@ -86,6 +93,7 @@
 
 {% block main-content %}
     <div class="container">
+      <div id="play-image-div"></div>
       <div id="description"></div>
       <div id="details"></div>
       <div id="post-box-div">
@@ -95,7 +103,7 @@
         </div>
       </div>
       <div id="review-list">
-        <p>Top Reviews:</p>
+        <p id="top-reviews"></p>
       </div>
     </div>
 {% endblock %}
