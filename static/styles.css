@@ -41,7 +41,7 @@
 .panel {
   color: white;
   font-size: 12pt;
-  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .my-panel {
