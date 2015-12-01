@@ -1,8 +1,5 @@
-# statler
+Project Statler is an online system that allows playgoers to review plays from *Ten! Ten! Ten!*, a production by the George Fox University theater department. The website uses sentiment analysis to automatically rank plays according to the sentiments users express in their reviews.
 
-The beginnings of awesome!
+The finished site is now available at tententenreviews.com.
 
-*We're underway!*
-
-See the Wiki at https://github.com/GFUCABAM/statler/wiki for all documentation.
-
+See [the Wiki](https://github.com/GFUCABAM/statler/wiki) for a complete description of the project's goals.
