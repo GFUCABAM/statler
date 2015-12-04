@@ -12,7 +12,7 @@ urlpatterns = [
 
     # urls that look like 'play-list/<play_list_id>/'
     url(r'^play-list/(?P<play_list_id>[^,/]+)/$', views.getPlayListPage, name='play-list'),
-    
+
     # blank urls are forwarded to the getLandingPage function
-    url(r'^$', views.getLandingPage, name='play-list')
+    url(r'^$', views.getLandingPage, name='play-list'),
 ]
