@@ -18,13 +18,16 @@
           // fill in page title
           $(".header > h1").append(result.title);
           // fill in description
+          $('#play-image-div').append(
+            $('<img/>', {width: '120', height: '120', src: '/' + result.image_url})
+          );
           $('#description').append(
             $("<p/>").append(result.description)
           );
           $('#details').append(
             $("<p/>").append("Directed by: ", result.director),
             $("<p/>").append("Actors: ", result.actors),
-            $("<p/>").append("Showtimes: ", result.show_times)
+            $("<p/>").append(result.show_times)
           );
           // fill in reviews
           $.each(result.reviews, function(index, review) {
@@ -34,6 +37,10 @@
               )
             );
           });
+          // Add a heading saying 'Top Reviews:' only if there are some
+          if (result.reviews.length > 0) {
+            $('#top-reviews').html('Top Reviews:');
+          }
 
         });
       });
@@ -86,16 +93,17 @@
 
 {% block main-content %}
     <div class="container">
+      <div id="play-image-div"></div>
       <div id="description"></div>
       <div id="details"></div>
       <div id="post-box-div">
-        <textarea id="post-box"></textarea>
+        <textarea id="post-box" class="form-control" rows="5" placeholder="Enter your review here. . . Our robots will rank the play based on what you say."></textarea>
         <div style="text-align: right">
-          <button onclick="postReview()">Post</button>
+          <button onclick="postReview()">Submit</button>
         </div>
       </div>
       <div id="review-list">
-        <p>Top Reviews:</p>
+        <p id="top-reviews"></p>
       </div>
     </div>
 {% endblock %}
