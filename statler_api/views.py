@@ -45,7 +45,3 @@ def postReview(request, play_id):
 
     # return the review object created. 201 status code denotes "created"
     return JsonResponse(review, encoder=StatlerEncoder, safe=False, status=201)
-
-def getDirectorsReport(request):
-    all_plays = get_object_or_404(PlayList, url_title="all")
-    return render(request, 'directors-report.html', {'all_plays': all_plays})

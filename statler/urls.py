@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^api/', include('statler_api.urls', namespace="api")),
+    url(r'^util/', include('statler_util.urls', namespace="util")),
     url(r'^admin/', include(admin.site.urls)),
     
     # Default to statler_site
