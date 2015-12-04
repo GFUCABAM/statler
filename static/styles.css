@@ -189,10 +189,19 @@ button:hover {
   padding: 5px;
 }
 
-a {
+.landing-page-list a, .landing-page-button a {
   color: white;
 }
 
-a:hover {
-  color: white;
+.about-page-text {
+  color: #ccc;
+  font-size: 14pt;
+}
+
+.about-page-text h1 {
+  font-size: 20pt;
+}
+
+.about-page-text p {
+  margin-bottom: 40px;
 }
