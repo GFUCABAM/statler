@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DjangoWebProject1", "DjangoWebProject1\DjangoWebProject1.pyproj", "{5C6E81D1-314A-4F42-8BB5-ED55AEBF0ADF}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "statler", "statler.pyproj", "{5C6E81D1-314A-4F42-8BB5-ED55AEBF0ADF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

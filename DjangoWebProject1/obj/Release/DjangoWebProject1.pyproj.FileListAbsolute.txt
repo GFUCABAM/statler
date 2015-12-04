@@ -1,9 +1,0 @@
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\bin\Microsoft.PythonTools.WebRole.dll
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\bin\AzureSetup.cfg
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\bin\Microsoft.PythonTools.AzureSetup.exe
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\bin\Microsoft.PythonTools.AzureSetup.exe.config
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\bin\wfastcgi.py
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\obj\Release\deployment-updated-pyvenv.cfg
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\ptvs_virtualenv_proxy.py
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\obj\Release\web.config
-c:\users\ben\documents\visual studio 2015\Projects\DjangoWebProject1\DjangoWebProject1\obj\Release\web.debug.config
