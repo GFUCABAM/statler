@@ -25,7 +25,8 @@
               //the whole list item is a link to the play description page
                 $('<div class="row panel my-panel"/>').append(
                   $('<div class="play-list-entry-index col-sm-1" />').append(
-                    index
+                    // display the play's index, or a question mark if it is not ranked
+                    index ? index : '?'
                   ),
                   $('<div class="col-sm-11" />').append(
                     $('<img/>', {class: "play-list-image", src: '/' + play.image_url}),
