@@ -1,3 +1,1 @@
-﻿"""
-Package for statler.
-"""
+﻿
