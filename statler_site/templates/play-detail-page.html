@@ -27,7 +27,7 @@
           $('#details').append(
             $("<p/>").append("Directed by: ", result.director),
             $("<p/>").append("Actors: ", result.actors),
-            $("<p/>").append("Showtimes: ", result.show_times)
+            $("<p/>").append(result.show_times)
           );
           // fill in reviews
           $.each(result.reviews, function(index, review) {
@@ -97,9 +97,9 @@
       <div id="description"></div>
       <div id="details"></div>
       <div id="post-box-div">
-        <textarea id="post-box"></textarea>
+        <textarea id="post-box" class="form-control" rows="5" placeholder="Enter your review here. . . Our robots will rank the play based on what you say."></textarea>
         <div style="text-align: right">
-          <button onclick="postReview()">Post</button>
+          <button onclick="postReview()">Submit</button>
         </div>
       </div>
       <div id="review-list">

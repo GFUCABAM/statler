@@ -2,8 +2,8 @@
   border-bottom: 1px solid #5a5a5a;
 }
 
-.container {
-  margin-bottom: 50px;
+body {
+  padding-bottom: 50px;
 }
 
 .header {
@@ -106,7 +106,7 @@
   height: 80px;
 }
 
-form, textarea, button {
+.form-control {
   color: black;
 }
 
