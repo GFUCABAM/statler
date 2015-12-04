@@ -1,3 +1,11 @@
+.navbar {
+  border-bottom: 1px solid #5a5a5a;
+}
+
+body {
+  padding-bottom: 50px;
+}
+
 .header {
   background-color:gray;
   background:no-repeat center center;
@@ -6,22 +14,22 @@
   -moz-background-size:cover;
   background-size:cover;
   -o-background-size:cover;
+  min-height: 100px;
+  margin-top: 50px;
   margin-bottom:50px;
-  min-height: 140px;
-  padding-top: 50px;
 }
 
 .logo-overlay {
   float: right;
   padding-right: 35px;
-  padding-top: 32px;
+  padding-top: 27px;
   padding-bottom: 20px;
 }
 
 .header h1 {
   margin: 0;
   padding-left: 60px;
-  padding-top: 30px;
+  padding-top: 25px;
   padding-bottom: 20px;
   font-family: "Accord Light SF", "Book Antiqua", serif;
   font-size: 48pt;
@@ -33,6 +41,7 @@
 .panel {
   color: white;
   font-size: 12pt;
+  word-wrap: break-word;
 }
 
 .my-panel {
@@ -52,6 +61,7 @@
 .my-panel p {
   font-size: 10pt;
   color: #a8a8a8;
+  margin-bottom: 0px;
 }
 
 .play-list-entry-index {
@@ -73,9 +83,16 @@
   color: white;
 }
 
+#play-image-div {
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
 #details {
   font-size: 10pt;
   color: #a8a8a8;
+  overflow: hidden;
 }
 
 #post-box-div, #details {
@@ -89,7 +106,7 @@
   height: 80px;
 }
 
-form, textarea, button {
+.form-control {
   color: black;
 }
 
@@ -163,11 +180,6 @@ button:hover {
   vertical-align: top;
 }
 
-.landing-page-list-box img {
-  width: 120px;
-  height: 120px;
-}
-
 .landing-page-button {
   border: 3px solid white;
   border-radius: 5px;
@@ -175,4 +187,12 @@ button:hover {
   font-style: normal;
   font-family: "Accord Light SF", "Book Antiqua", serif;
   padding: 5px;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: white;
 }
