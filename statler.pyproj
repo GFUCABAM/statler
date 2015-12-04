@@ -6,7 +6,7 @@
     <RootNamespace>DjangoWebProject1</RootNamespace>
     <InterpreterId>{5a45065f-be92-4db0-8249-5908ef475512}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
-    <NameOfLastUsedPublishProfile>tententenreviews</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>tttr-pre-prod - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,6 +64,13 @@
     <Compile Include="statler_site\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="static\" />
+    <Folder Include="static\admin\" />
+    <Folder Include="static\admin\css\" />
+    <Folder Include="static\admin\img\" />
+    <Folder Include="static\admin\img\gis\" />
+    <Folder Include="static\admin\js\" />
+    <Folder Include="static\admin\js\admin\" />
     <Folder Include="statler\" />
     <Folder Include="statler_api\" />
     <Folder Include="statler_api\migrations\" />
@@ -84,6 +91,74 @@
     <Content Include=".gitignore" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
+    <Content Include="static\admin\css\base.css" />
+    <Content Include="static\admin\css\changelists.css" />
+    <Content Include="static\admin\css\dashboard.css" />
+    <Content Include="static\admin\css\forms.css" />
+    <Content Include="static\admin\css\ie.css" />
+    <Content Include="static\admin\css\login.css" />
+    <Content Include="static\admin\css\rtl.css" />
+    <Content Include="static\admin\css\widgets.css" />
+    <Content Include="static\admin\img\changelist-bg.gif" />
+    <Content Include="static\admin\img\changelist-bg_rtl.gif" />
+    <Content Include="static\admin\img\default-bg-reverse.gif" />
+    <Content Include="static\admin\img\default-bg.gif" />
+    <Content Include="static\admin\img\deleted-overlay.gif" />
+    <Content Include="static\admin\img\gis\move_vertex_off.png" />
+    <Content Include="static\admin\img\gis\move_vertex_on.png" />
+    <Content Include="static\admin\img\icon-no.gif" />
+    <Content Include="static\admin\img\icon-unknown.gif" />
+    <Content Include="static\admin\img\icon-yes.gif" />
+    <Content Include="static\admin\img\icon_addlink.gif" />
+    <Content Include="static\admin\img\icon_alert.gif" />
+    <Content Include="static\admin\img\icon_calendar.gif" />
+    <Content Include="static\admin\img\icon_changelink.gif" />
+    <Content Include="static\admin\img\icon_clock.gif" />
+    <Content Include="static\admin\img\icon_deletelink.gif" />
+    <Content Include="static\admin\img\icon_error.gif" />
+    <Content Include="static\admin\img\icon_searchbox.png" />
+    <Content Include="static\admin\img\icon_success.gif" />
+    <Content Include="static\admin\img\inline-delete-8bit.png" />
+    <Content Include="static\admin\img\inline-delete.png" />
+    <Content Include="static\admin\img\inline-restore-8bit.png" />
+    <Content Include="static\admin\img\inline-restore.png" />
+    <Content Include="static\admin\img\inline-splitter-bg.gif" />
+    <Content Include="static\admin\img\nav-bg-grabber.gif" />
+    <Content Include="static\admin\img\nav-bg-reverse.gif" />
+    <Content Include="static\admin\img\nav-bg-selected.gif" />
+    <Content Include="static\admin\img\nav-bg.gif" />
+    <Content Include="static\admin\img\selector-icons.gif" />
+    <Content Include="static\admin\img\selector-search.gif" />
+    <Content Include="static\admin\img\sorting-icons.gif" />
+    <Content Include="static\admin\img\tooltag-add.png" />
+    <Content Include="static\admin\img\tooltag-arrowright.png" />
+    <Content Include="static\admin\js\actions.js" />
+    <Content Include="static\admin\js\actions.min.js" />
+    <Content Include="static\admin\js\admin\DateTimeShortcuts.js" />
+    <Content Include="static\admin\js\admin\RelatedObjectLookups.js" />
+    <Content Include="static\admin\js\calendar.js" />
+    <Content Include="static\admin\js\collapse.js" />
+    <Content Include="static\admin\js\collapse.min.js" />
+    <Content Include="static\admin\js\core.js" />
+    <Content Include="static\admin\js\inlines.js" />
+    <Content Include="static\admin\js\inlines.min.js" />
+    <Content Include="static\admin\js\jquery.init.js" />
+    <Content Include="static\admin\js\jquery.js" />
+    <Content Include="static\admin\js\jquery.min.js" />
+    <Content Include="static\admin\js\LICENSE-JQUERY.txt" />
+    <Content Include="static\admin\js\prepopulate.js" />
+    <Content Include="static\admin\js\prepopulate.min.js" />
+    <Content Include="static\admin\js\related-widget-wrapper.js" />
+    <Content Include="static\admin\js\SelectBox.js" />
+    <Content Include="static\admin\js\SelectFilter2.js" />
+    <Content Include="static\admin\js\timeparse.js" />
+    <Content Include="static\admin\js\urlify.js" />
+    <Content Include="static\bootstrap.css" />
+    <Content Include="static\favicon.ico" />
+    <Content Include="static\gfu-logo.png" />
+    <Content Include="static\header-image.png" />
+    <Content Include="static\play-image-placeholder.png" />
+    <Content Include="static\styles.css" />
     <Content Include="statler_api\migrations\__pycache__\0001_initial.cpython-34.pyc" />
     <Content Include="statler_api\migrations\__pycache__\0002_auto_20151024_1043.cpython-34.pyc" />
     <Content Include="statler_api\migrations\__pycache__\0002_playlist_plays.cpython-34.pyc" />
@@ -124,6 +199,7 @@
     <Content Include="statler_site\__pycache__\views.cpython-34.pyc" />
     <Content Include="statler_site\__pycache__\__init__.cpython-34.pyc" />
     <Content Include="statler_site\__pycache__\__init__.cpython-35.pyc" />
+    <None Include="tttr-pre-prod - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
