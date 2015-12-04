@@ -12,19 +12,19 @@
   
   <table border="1">
     <tr style="background: gray;">
-    <td>Text</td>
-    <td>Submission time</td>
-    <td>Computer-generated rating (based on text of reviews; -100 to 100)</td>
-    <td>Order reviews are displayed on the webpage, chosen by a human ("None" means the review is not displayed on the webpage)</td>
+      <td>Text</td>
+      <td>Submission time</td>
+      <td>Computer-generated rating (based on text of reviews; -100 to 100)</td>
+      <td>Order reviews are displayed on the webpage, chosen by a human ("None" means the review is not displayed on the webpage)</td>
     </tr>
 
     {% for review in play.review_set.all %}
     
       <tr>
-      <td>{{ review.text }}</td>
-      <td>{{ review.timestamp }}</td>
-      <td>{{ review.rating }}</td>
-      <td>{{ review.top_review_rank }}</td>
+        <td>{{ review.text }}</td>
+        <td>{{ review.timestamp }}</td>
+        <td>{{ review.rating }}</td>
+        <td>{{ review.top_review_rank }}</td>
       </tr>
 
     {% endfor %}
