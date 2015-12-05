@@ -18,8 +18,6 @@
             var play = playEntry.play;
             var index = playEntry.index;
 
-            //TODO: display plays in order by playEntry.index
-
             // this indentation helps because it looks a bit like html
             $('#play-list').append(
               //the whole list item is a link to the play description page
@@ -34,7 +32,7 @@
                     $('<p/>').append('Directed by ', play.director),
                     $('<p/>').append(play.show_times)
                   ),
-                  $('<a class="whole-div-link" href="/play/' + play.url_title + '/"/>')
+                  $('<a class="whole-div-link" href="/play/' + play.url_title + '/" />')
                 )
             );
 
@@ -47,6 +45,7 @@
 
 {% block main-content %}
     <div class="container">
+      <p id="description">Plays ranked by review positivity:</p>
       <div id="play-list" class="container">
       </div>
     </div>
