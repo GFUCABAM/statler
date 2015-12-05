@@ -25,7 +25,12 @@ class ReviewInline(admin.TabularInline):
 class PlayAdmin(admin.ModelAdmin):
     inlines = [ReviewInline]
 
+# the list of reviews will include fields for the play and top_review_rank
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'play', 'top_review_rank')
+    list_editable = ('top_review_rank',)
 
 # show plays on the auto-generated admin site
+admin.site.register(Review, ReviewAdmin)
 admin.site.register(Play, PlayAdmin)
 admin.site.register(PlayList, PlayListAdmin)

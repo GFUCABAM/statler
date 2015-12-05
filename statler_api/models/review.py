@@ -25,9 +25,9 @@ class Review(models.Model, StatlerModel):
 
     # region Method Overrides
     def __str__(self):
-        """default string representation: The first 16 characters of the review"""
+        """default string representation: The first 32 characters of the review"""
 
-        return self.text[:16]
+        return self.text[:32] + ("..." if len(self.text) > 32 else "")
 
     def getApiFields(self):
         """Gets fields for API serialization"""

@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     # Our apps:
     'statler_api',
     'statler_site',
+    'statler_util',
 )
 
 MIDDLEWARE_CLASSES = (

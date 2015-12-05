@@ -7,8 +7,8 @@
 
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
-        fillInList("/api/play-list/night-1/", "#play-list-night-1");
-        fillInList("/api/play-list/night-2/", "#play-list-night-2");
+        fillInList("/api/play-list/wednesday-chronological/", "#play-list-wednesday");
+        fillInList("/api/play-list/thursday-chronological/", "#play-list-thursday");
       });
 
       function fillInList(getURL, divId) {
@@ -49,12 +49,12 @@
     <div class="container">
       <p class="landing-page-text">Click a play to review it . . .</p>
       <div class="landing-page-list-box">
-        <p class="landing-page-text">First Night:</p>
-        <div class="landing-page-list" id="play-list-night-1">
+        <p class="landing-page-text">Wednesday Night:</p>
+        <div class="landing-page-list" id="play-list-wednesday">
           <img src="/static/loading.gif" />
         </div>
-        <p class="landing-page-text">Second Night:</p>
-        <div class="landing-page-list" id="play-list-night-2">
+        <p class="landing-page-text">Thursday Night:</p>
+        <div class="landing-page-list" id="play-list-thursday">
           <img src="/static/loading.gif" />
         </div>
       </div>
