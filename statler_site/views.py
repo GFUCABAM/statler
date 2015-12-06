@@ -20,3 +20,6 @@ def getLandingPage(request):
     """returns an html page which will use JavaScript
     to get and display data"""
     return render(request, 'landing-page.html', {})
+
+def getAboutPage(request):
+    return render(request, 'about.html', {})
