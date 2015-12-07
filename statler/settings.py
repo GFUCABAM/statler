@@ -5,16 +5,6 @@ Django settings for statler project.
 from os import path
 PROJECT_ROOT = path.dirname(path.abspath(path.dirname(__file__)))
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'n(bd1f1c%e8=_xad02x5qtfn%wgwpi492e$8_erx+d)!tpeoim'
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = (
-    'localhost',
-)
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,19 +54,7 @@ WSGI_APPLICATION = 'statler.wsgi.application'
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
-
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'statler',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
 
 LOGIN_URL = '/login'
 
@@ -171,3 +149,62 @@ LOGGING = {
 
 # Specify the default test runner.
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+################################
+#### OVERRIDABLE PROPERTIES ####
+################################
+
+DEFAULT_DEBUG = True
+
+DEFAULT_ALLOWED_HOSTS = (
+    'localhost',
+)
+
+# Make this unique, and don't share it with anybody.
+DEFAULT_SECRET_KEY = 'n(bd1f1c%e8=_xad02x5qtfn%wgwpi492e$8_erx+d)!tpeoim'
+
+DEFAULT_DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'statler',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+# Set overridable settings.
+try:
+    # If no settings_overrides exists, this will throw an ImportError, invoking the except block.
+    from statler import settings_overrides
+
+    try:
+        DEBUG = settings_overrides.DEBUG
+    except AttributeError:
+        DEBUG = DEFAULT_DEBUG
+
+    try:
+        ALLOWED_HOSTS = settings_overrides.ALLOWED_HOSTS
+    except AttributeError:
+        ALLOWED_HOSTS = DEFAULT_ALLOWED_HOSTS
+
+    try:
+        SECRET_KEY = settings_overrides.SECRET_KEY
+    except AttributeError:
+        SECRET_KEY = DEFAULT_SECRET_KEY
+
+    try:
+        DATABASES = settings_overrides.DATABASES
+    except AttributeError:
+        DATABASES = DEFAULT_DATABASES
+
+except ImportError:
+    
+    DEBUG = DEFAULT_DEBUG
+    ALLOWED_HOSTS = DEFAULT_ALLOWED_HOSTS
+    SECRET_KEY = DEFAULT_SECRET_KEY
+    DATABASES = DEFAULT_DATABASES
+
+
+TEMPLATE_DEBUG = DEBUG

@@ -6,8 +6,15 @@
 # Compiled Python directories
 **/__pycache__/
 
-# PyCharm Files
-.idea/
+# Settigs overrides (intended for non-public deployment settings).
+# Note that statler/settings_overrides.py.default IS tracked. don't put secret things there.
+statler/settings_overrides.py
+
+# Python virtual environent (Must be regenerated on each machine from requirements.txt)
+env/**
+
+# sqlite databases
+*.sqlite3
 
 # Visual Studio build artifacts (not ignoring .sln, .pyproj)
 bin/
@@ -17,5 +24,5 @@ obj/
 # Viusal Studio Deployment user settings (not ignoring plain .pubxml deployment settings)
 *.pubxml.user
 
-# Python virtual environent (Must be regenerated on each machine from requirements.txt)
-env/**
+# PyCharm Files
+.idea/
