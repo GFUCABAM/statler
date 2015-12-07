@@ -3,6 +3,9 @@
 # Compiled Python files
 *.pyc
 
+# Automatically collected static files
+static/**
+
 # Compiled Python directories
 **/__pycache__/
 
