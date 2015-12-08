@@ -80,7 +80,7 @@
          // if this is the first time posting build a cookie with the posted respsone
          if(Cookies.get("post") == undefined)
          {
-            Cookies.set("post", response.text);
+            Cookies.set("post", response.text, { expires: 365, path: '' });
          }
       
         $("#post-box-div").html(
