@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap old and new support broswers-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!--<link rel="stylesheet" type="text/css" href="/static/styles.css"/>-->
+
+    <script>
+        function makeFirst(id) {
+
+            var firstPk = $("#top-1 .pk").html();
+            if (firstPk)
+            {
+                makeSecond(firstPk);
+            }
+
+            var text = $("#" + id + " .review-text").html();
+            $("#top-1 .review-text").html(text);
+            $("#top-1 .pk").html(id);
+        }
+
+        function makeSecond(id) {
+
+            var secondPk = $("#top-2 .pk").html();
+            if (secondPk)
+            {
+                makeThird(secondPk);
+            }
+
+            var text = $("#" + id + " .review-text").html();
+            $("#top-2 .review-text").html(text);
+            $("#top-2 .pk").html(id);
+        }
+
+        function makeThird(id) {
+            var text = $("#" + id + " .review-text").html();
+            $("#top-3 .review-text").html(text);
+            $("#top-3 .pk").html(id);
+        }
+
+        function sumbitTop()
+        {
+
+            var topPlays = {
+                "top-1": $("#top-1 .pk").html(),
+                "top-2": $("#top-2 .pk").html(),
+                "top-3": $("#top-3 .pk").html()
+            };
+
+            function postSuccess(data)
+            {
+                $("#post-alert").addClass("alert-success").html(data.message).show();
+            }
+            function postError(error)
+            {
+                $("#post-alert").addClass("alert-danger").html(error).show();
+            }
+
+            $.ajax({
+                url: "{% url 'util:approved-reviews' play.url_title %}",
+                type: 'post',
+                data: JSON.stringify(topPlays),
+                headers: { "X-CSRFToken": "{{ csrf_token }}" },
+                contentType: "application/json; charset=UTF-8",
+                dataType: "json",
+                success: postSuccess,
+                error: postError
+            });
+        }
+    </script>
+
+    <!--<style>
+        #the-big-row {
+            position: fixed;
+            max-height: 100%
+        }
+    </style>-->
+
+    <title>Review Play</title>
+</head>
+
+<body>
+<div class="container" id="the-big-container">
+    <div class="row">
+
+        <div class="col-md-6" id="all-review-">
+            <h1>Approve {{ play.title }} reviews</h1>
+
+            {% for review in play.review_set.all %}
+                <div class="row" id="{{ review.pk }}">
+                    <div class="col-md-2">
+                        <button class="btn btn-default" onclick="makeFirst({{ review.pk }})">1</button>
+                        <button class="btn btn-default" onclick="makeSecond({{ review.pk }})">2</button>
+                        <button class="btn btn-default" onclick="makeThird({{ review.pk }})">3</button>
+                        <div class=""></div>
+                    </div>
+                    <div class="col-md-10 well review-text">{{ review.text }}</div>
+                </div>
+                <hr>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- This column contains the current top reviews -->
+        <div class="col-md-6" id="top-review-column">
+            <h1>Top Reviews</h1>
+            <div id="top-1" class="row">
+                <div class="col-md-2">
+                    <h2>1</h2>
+                    <h3 class="pk"></h3>
+                </div>
+                <div class="col-md-10 review-text well"></div>
+            </div>
+            <hr>
+            <div id="top-2" class="row">
+                <div class="col-md-2">
+                    <h2>2</h2>
+                    <h3 class="pk"></h3>
+                </div>
+                <div class="col-md-10 review-text well"></div>
+            </div>
+            <hr>
+            <div id="top-3" class="row">
+                <div class="col-md-2">
+                    <h2>3</h2>
+                    <h3 class="pk"></h3>
+                </div>
+                <div class="col-md-10 review-text well"></div>
+            </div>
+            <hr>
+
+            <button id="submit-button" onclick="sumbitTop()" class="btn large btn-primary" style="width: 100%">Submit</button>
+            <div id="post-alert" class="alert" style="display:none"></div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
