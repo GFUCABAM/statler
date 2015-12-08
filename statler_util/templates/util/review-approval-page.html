@@ -79,29 +79,38 @@
         }
     </script>
 
-    <!--<style>
-        #the-big-row {
-            position: fixed;
-            max-height: 100%
+    <style>
+        #all-review-column {
+            position: absolute;
+            left: 0px;
+            top: 0px;
         }
-    </style>-->
+
+        #top-review-column {
+            position: fixed;
+            right: 0px;
+            top: 0px;
+        }
+        
+        .btn-first, .btn-second, .btn-third {
+            width: 100%
+        }
+
+    </style>
 
     <title>Review Play</title>
 </head>
 
 <body>
-<div class="container" id="the-big-container">
-    <div class="row">
-
-        <div class="col-md-6" id="all-review-">
+<div class="col-md-6" id="all-review-column">
             <h1>Approve {{ play.title }} reviews</h1>
 
             {% for review in play.review_set.all %}
                 <div class="row" id="{{ review.pk }}">
                     <div class="col-md-2">
-                        <button class="btn btn-default" onclick="makeFirst({{ review.pk }})">1</button>
-                        <button class="btn btn-default" onclick="makeSecond({{ review.pk }})">2</button>
-                        <button class="btn btn-default" onclick="makeThird({{ review.pk }})">3</button>
+                        <button class="btn btn-default btn-first" onclick="makeFirst({{ review.pk }})">1</button>
+                        <button class="btn btn-default btn-second" onclick="makeSecond({{ review.pk }})">2</button>
+                        <button class="btn btn-default btn-third" onclick="makeThird({{ review.pk }})">3</button>
                         <div class=""></div>
                     </div>
                     <div class="col-md-10 well review-text">{{ review.text }}</div>
@@ -115,38 +124,34 @@
         <!-- This column contains the current top reviews -->
         <div class="col-md-6" id="top-review-column">
             <h1>Top Reviews</h1>
+
             <div id="top-1" class="row">
                 <div class="col-md-2">
                     <h2>1</h2>
-                    <h3 class="pk"></h3>
+                    <h3 class="pk">{{ top1.pk }}</h3>
                 </div>
-                <div class="col-md-10 review-text well"></div>
+                <div class="col-md-10 review-text well">{{ top1.text }}</div>
             </div>
             <hr>
             <div id="top-2" class="row">
                 <div class="col-md-2">
                     <h2>2</h2>
-                    <h3 class="pk"></h3>
+                    <h3 class="pk">{{ top2.pk }}</h3>
                 </div>
-                <div class="col-md-10 review-text well"></div>
+                <div class="col-md-10 review-text well">{{ top2.text }}</div>
             </div>
             <hr>
             <div id="top-3" class="row">
                 <div class="col-md-2">
                     <h2>3</h2>
-                    <h3 class="pk"></h3>
+                    <h3 class="pk">{{ top3.pk }}</h3>
                 </div>
-                <div class="col-md-10 review-text well"></div>
+                <div class="col-md-10 review-text well">{{ top3.text }}</div>
             </div>
             <hr>
 
             <button id="submit-button" onclick="sumbitTop()" class="btn large btn-primary" style="width: 100%">Submit</button>
             <div id="post-alert" class="alert" style="display:none"></div>
         </div>
-
-    </div>
-
-</div>
-
 </body>
 </html>
