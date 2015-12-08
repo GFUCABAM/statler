@@ -89,6 +89,7 @@
     <Folder Include="statler_site\templates\" />
     <Folder Include="statler_util\" />
     <Folder Include="statler_util\templates\" />
+    <Folder Include="statler_util\templates\util\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -161,8 +162,9 @@
     <Content Include="static\header-image.jpg" />
     <Content Include="static\play-image-placeholder.png" />
     <Content Include="static\styles.css" />
-    <Content Include="statler\settings_overrides.py" />
     <Content Include="statler_api\fixtures\playlists.json" />
+    <Content Include="statler_util\templates\util\directors-report.html" />
+    <Content Include="statler_util\templates\util\review-approval-page.html" />
     <Content Include="statler_site\static\bootstrap.css" />
     <Content Include="statler_site\static\favicon.ico" />
     <Content Include="statler_site\static\gfu-logo.png" />
@@ -173,7 +175,6 @@
     <Content Include="statler_site\templates\play-detail-page.html" />
     <Content Include="statler_site\templates\play-list-page.html" />
     <Content Include="statler_site\templates\statler-base-page.html" />
-    <Content Include="statler_util\templates\directors-report.html" />
     <None Include="tttr-pre-prod - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
