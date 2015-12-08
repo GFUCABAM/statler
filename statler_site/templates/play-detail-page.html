@@ -2,7 +2,6 @@
 
 {% block page-script %}
     <script>
-
       // This script makes an API call and displays the returned data
 
       // This string will be filled out by Django when the page is served.
@@ -11,6 +10,14 @@
 
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
+        // Test if a cookie exists
+        if(Cookies.get("post") != undefined)
+        {
+           // call the postSuccsess method again with the response saved in the cookie
+           var response = {text:Cookies.get("post")};
+           postSuccess(response);
+        }
+
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
           // display the returned json dynamically
@@ -65,6 +72,12 @@
       }
 
       function postSuccess(response) {
+         // if this is the first time posting build a cookie with the posted respsone
+         if(Cookies.get("post") == undefined)
+         {
+            Cookies.set("post", response.text, { expires: 365, path: '' });
+         }
+      
         $("#post-box-div").html(
           $('<div class="panel panel-success"/>').append(
             $('<div class="panel-heading"/>').append(
