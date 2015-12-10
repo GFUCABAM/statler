@@ -1,4 +1,4 @@
-"""statler URL Configuration
+﻿"""statler URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^api/', include('statler_api.urls', namespace="api")),
+    url(r'^util/', include('statler_util.urls', namespace="util")),
     url(r'^admin/', include(admin.site.urls)),
     
     # Default to statler_site

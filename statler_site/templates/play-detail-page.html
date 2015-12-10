@@ -2,7 +2,6 @@
 
 {% block page-script %}
     <script>
-
       // This script makes an API call and displays the returned data
 
       // This string will be filled out by Django when the page is served.
@@ -11,6 +10,14 @@
 
       // jQuery code normally starts with the .ready function
       $(document).ready(function(){
+        // Test if a cookie exists
+        if(Cookies.get("post") != undefined)
+        {
+           // call the postSuccsess method again with the response saved in the cookie
+           var response = {text:Cookies.get("post")};
+           postSuccess(response);
+        }
+
         // Get JSON from a URL as an object
         $.getJSON(apiEndpointUrl, function(result){
           // display the returned json dynamically
@@ -18,13 +25,16 @@
           // fill in page title
           $(".header > h1").append(result.title);
           // fill in description
+          $('#play-image-div').append(
+            $('<img/>', {width: '120', height: '120', src: '/' + result.image_url})
+          );
           $('#description').append(
             $("<p/>").append(result.description)
           );
           $('#details').append(
-            $("<p/>").append("Directed by: ", result.director),
+            $("<p/>").append("Directed by ", result.director),
             $("<p/>").append("Actors: ", result.actors),
-            $("<p/>").append("Showtimes: ", result.show_times)
+            $("<p/>").append(result.show_times)
           );
           // fill in reviews
           $.each(result.reviews, function(index, review) {
@@ -34,6 +44,10 @@
               )
             );
           });
+          // Add a heading saying 'Top Reviews:' only if there are some
+          if (result.reviews.length > 0) {
+            $('#top-reviews').html('Top Reviews:');
+          }
 
         });
       });
@@ -58,6 +72,12 @@
       }
 
       function postSuccess(response) {
+         // if this is the first time posting build a cookie with the posted respsone
+         if(Cookies.get("post") == undefined)
+         {
+            Cookies.set("post", response.text, { expires: 365, path: '' });
+         }
+      
         $("#post-box-div").html(
           $('<div class="panel panel-success"/>').append(
             $('<div class="panel-heading"/>').append(
@@ -86,16 +106,17 @@
 
 {% block main-content %}
     <div class="container">
+      <div id="play-image-div"></div>
       <div id="description"></div>
       <div id="details"></div>
       <div id="post-box-div">
-        <textarea id="post-box"></textarea>
+        <textarea id="post-box" class="form-control" rows="5" placeholder="Enter your review here. . . Our robots will rank the play based on what you say."></textarea>
         <div style="text-align: right">
-          <button onclick="postReview()">Post</button>
+          <button onclick="postReview()">Submit</button>
         </div>
       </div>
       <div id="review-list">
-        <p>Top Reviews:</p>
+        <p id="top-reviews"></p>
       </div>
     </div>
 {% endblock %}

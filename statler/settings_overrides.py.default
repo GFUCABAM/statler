@@ -1,0 +1,33 @@
+"""
+Overrides for settings.py.
+
+To override settings (for production or machine-specifc reasons) copy this file
+to settings_overrides.py and uncomment the settings you'd like to change. Note
+that settings_overrides.py is ignored by git, so only the defaults will be
+checked in.
+
+To add more overridable settings, modify the bottom of settings.py
+"""
+
+# Uncomment this if using sqlite
+# import os
+
+# DEBUG = False
+
+#ALLOWED_HOSTS = (
+#    'localhost',
+#    'tententenreviews.com',
+#)
+
+#SECRET_KEY = "Make this unique, and don't share it with anybody."
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3', 
+#        'NAME': os.path.join(os.getcwd(), 'statler.sqlite3'),
+#        'USER': '',
+#        'PASSWORD': '',
+#        'HOST': '',
+#        'PORT': '',
+#    }
+#}
