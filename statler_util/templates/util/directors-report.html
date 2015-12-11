@@ -1,34 +1,60 @@
-{% for play in all_plays.plays.all %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body {
+        font-family: Sans-Serif;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid black;
+      }
+      th {
+        background-color: LightGray;
+      }
+    </style>
+  </head>
+  <body>
 
-  <h1>{{ play.title }}</h1>
-  <p>Title used in URL: {{ play.url_title }}</p>
-  <p>Director: {{ play.director }}</p>
-  <p>Actors: {{ play.actors }}</p>
-  <p>Show times: {{ play.show_times }}</p>
-  <p>Description: {{ play.description }}</p>
-  <p>Computer-generated rating (based on text of reviews; -100 to 100): {{ play.rating }}</p>
+    {% comment %} TODO: make this description better. Explain that machine ratings may be innacurate {% endcomment %}
+    <p>
+      The computer-generated rating is based on the text of the reviews. It is in the range -100 to 100.
+      Positive numbers represent a detected positive sentiment, and negative numbers represent a negative sentiment.
+      The number itself represents the rating system's certainty. For example, a rating of 90 means the system
+      is 90% sure the review is positive. The play's computer-generated rating is the average of all the reviews' ratings.
+      Reviews with a yellow background were chosen by our team to be displayed on the website, due
+      to their high quality.
+    </p>
 
-  <p>Reviews:</p>
-  
-  <table border="1">
-    <tr style="background: gray;">
-      <td>Text</td>
-      <td>Submission time</td>
-      <td>Computer-generated rating (based on text of reviews; -100 to 100)</td>
-      <td>Order reviews are displayed on the webpage, chosen by a human ("None" means the review is not displayed on the webpage)</td>
-    </tr>
+    <h1>{{ play.title }}</h1>
+    <p>Director: {{ play.director }}</p>
+    <p>Actors: {{ play.actors }}</p>
+    <p>Show time: {{ play.show_times }}</p>
+    <p>Description: {{ play.description }}</p>
+    <p>Computer-generated rating: {{ play.rating }}</p>
 
-    {% for review in play.review_set.all %}
-    
+    <p>Reviews:</p>
+
+    <table>
       <tr>
-        <td>{{ review.text }}</td>
-        <td>{{ review.timestamp }}</td>
-        <td>{{ review.rating }}</td>
-        <td>{{ review.top_review_rank }}</td>
+        <th>Review Text</th>
+        <th>Computer-generated rating</th>
       </tr>
+      
+      {% for review in reviews %}
 
-    {% endfor %}
+        <tr {% if review.top_review_rank != None %} style="background-color: #fd5;" {% endif %} >
+          {% comment %} Review text is already escaped, don't escape it again {% endcomment %}
+          <td>{% autoescape off %}{{ review.text }}{% endautoescape %}</td>
+          <td>{{ review.rating }}</td>
+        </tr>
 
-  </table>
+      {% endfor %}
+    </table>
 
-{% endfor %}
+  </body>
+</html>
