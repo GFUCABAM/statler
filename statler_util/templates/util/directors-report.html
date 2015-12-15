@@ -1,60 +1,108 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap old and new support broswers-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
     <style type="text/css">
-      body {
-        font-family: Sans-Serif;
+      .well {
+          background-color: white;
+          border: 1px solid black;
+
       }
-      table {
-        border-collapse: collapse;
-        width: 100%;
+
+      .jumbotron p {
+          margin: 15px;
       }
-      th, td {
-        border: 1px solid black;
-      }
-      th {
-        background-color: LightGray;
+
+      .jumbotron h1 {
+          margin: 0px;
       }
     </style>
-  </head>
-  <body>
-
-    {% comment %} TODO: make this description better. Explain that machine ratings may be innacurate {% endcomment %}
-    <p>
-      The computer-generated rating is based on the text of the reviews. It is in the range -100 to 100.
-      Positive numbers represent a detected positive sentiment, and negative numbers represent a negative sentiment.
-      The number itself represents the rating system's certainty. For example, a rating of 90 means the system
-      is 90% sure the review is positive. The play's computer-generated rating is the average of all the reviews' ratings.
-      Reviews with a yellow background were chosen by our team to be displayed on the website, due
-      to their high quality.
-    </p>
-
+</head>
+<body>
+<div class="jumbotron" style="background-color: white; text-align: center;">
+    <div class="container" style="border-bottom: 5px solid black; border-top: 5px solid black;" >
+        
+    <p><em>Ten! Ten! Ten!</em> review report</p>
     <h1>{{ play.title }}</h1>
-    <p>Director: {{ play.director }}</p>
-    <p>Actors: {{ play.actors }}</p>
-    <p>Show time: {{ play.show_times }}</p>
-    <p>Description: {{ play.description }}</p>
-    <p>Computer-generated rating: {{ play.rating }}</p>
+    <p>Directed by {{ play.director }}</p>
+    </div>
 
-    <p>Reviews:</p>
+</div>
 
-    <table>
-      <tr>
-        <th>Review Text</th>
-        <th>Computer-generated rating</th>
-      </tr>
-      
-      {% for review in reviews %}
+{% comment %}
+<div class="container well">
+    
+    <div style="text-align:center; color: darkgray; font-style: italic; margin-bottom: 15px;">
+        <div>Actors: {{ play.actors }}</div>
+        <div>Show time: {{ play.show_times }}</div>
+        <div>Description: {{ play.description }}</div>
+        <div>Computer-generated rating: {{ play.rating }}</div>
+    </div>
 
-        <tr {% if review.top_review_rank != None %} style="background-color: #fd5;" {% endif %} >
-          {% comment %} Review text is already escaped, don't escape it again {% endcomment %}
-          <td>{% autoescape off %}{{ review.text }}{% endautoescape %}</td>
-          <td>{{ review.rating }}</td>
-        </tr>
 
-      {% endfor %}
-    </table>
+</div>
+{% endcomment %}
 
-  </body>
+<div class="container">
+    <div style="position: relative;">
+        <h1>Reviews</h1>
+        <p style="font-style: italic; text-align: right; position: absolute; bottom: 0px; right: 0px; margin: 0px;">
+            <a href="#disclaimer">Computer-generated review rating <strong>*</strong><br /></a>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> denotes displayed top review
+        </p>
+
+     </div>      
+        {% for review in reviews %}
+
+        <div class="row well" style="{page-break-inside: avoid;}">
+            {% comment %} Review text is already escaped, don't escape it again {% endcomment %}
+            <div class="col-xs-9">
+                {% autoescape off %}{{ review.text }}{% endautoescape %}
+            </div>
+            <div class="col-xs-3" style="font-style: italic; text-align: right;">
+
+                {% if review.top_review_rank != None %}
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                {% endif %} 
+
+                {% if review.rating > 0 %}
+                Positive ({{ review.rating|floatformat:0 }}% confidence)
+                {% elif review.rating < 0 %}
+                Negative ({{ review.rating|floatformat:0 }}% confidence)
+                {% else %}
+                Neutral ({{ review.rating|floatformat:0 }}% confidence)
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div id="disclaimer">
+            
+        <p style="font-style: italic;">
+            <strong>*</strong> The computer-generated rating is derived from automated sentiment analysis of the reviews' text. 
+            Natural language processing is one of the modern frontiers of computer science, so take our rating robot's guess
+            with a grain of salt. Our team manually chose the top reviews (starred) to be displayed on the site.
+        </p>
+
+        <p style="font-size: large; text-align: center;"> 
+            It has been a pleasure to work with you throughout <em>Ten! Ten! Ten!</em> If you have any questions about the site,
+            don't hesitate to reach out to <em>tententenreviews@gmail.com</em>
+        </p>
+        <p style="font-size: large; text-align: center;">
+            Sincerely,<br />
+            Team CABAM
+        </p>
+        </div>
+</div>
+</body>
 </html>
