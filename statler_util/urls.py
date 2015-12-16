@@ -4,12 +4,10 @@ from . import views
 
 # This is where the magical regex mapping happens.
 urlpatterns = [
-    # urls that look like 'util/directors-report/' are handled here
-    # uncomment this line to test director's report page
-    # comment this out to prevent the public from viewing the director's report page
-    # TODO: put this behind admin authorization
-    
-    url(r'^report/$', views.getDirectorsReport, name='report'),
+    url(r'^report/$', views.getSimplePlayIndex, name='report-index'),
+    url(r'^report/(?P<play_id>[^,/]+)/$', views.getDirectorsReport, name='report'),
+
+    url(r'^approve/$', views.getSimplePlayIndex, name='approve-index'),
     url(r'^approve/(?P<play_id>[^,/]+)/$', views.getApprovalPage, name='approve'),
     url(r'^approved/(?P<play_id>[^,/]+)/reviews/$', views.postApprovedReviews, name='approved-reviews'),
 ]
