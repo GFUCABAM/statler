@@ -16,7 +16,7 @@
       .well {
           background-color: white;
           border: 1px solid black;
-
+          word-wrap: break-word;
       }
 
       .jumbotron p {
@@ -57,8 +57,8 @@
     <div style="position: relative;">
         <h1>Reviews</h1>
         <p style="font-style: italic; text-align: right; position: absolute; bottom: 0px; right: 0px; margin: 0px;">
-            <a href="#disclaimer">Computer-generated review rating <strong>*</strong><br /></a>
-            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> denotes displayed top review
+            <a href="#disclaimer" style="color:black">Computer-generated review rating<strong>*</strong><br /></a>
+            (reviews displayed on website are starred)
         </p>
 
      </div>      
@@ -78,9 +78,9 @@
                 {% if review.rating > 0 %}
                 Positive ({{ review.rating|floatformat:0 }}% confidence)
                 {% elif review.rating < 0 %}
-                Negative ({{ review.rating|floatformat:0 }}% confidence)
+                Negative ({{ review.rating|floatformat:0|slice:"1:" }}% confidence)
                 {% else %}
-                Neutral ({{ review.rating|floatformat:0 }}% confidence)
+                Neutral
                 {% endif %}
             </div>
         </div>
