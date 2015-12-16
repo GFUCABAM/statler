@@ -3,10 +3,10 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>statler</Name>
-    <RootNamespace>DjangoWebProject1</RootNamespace>
+    <RootNamespace>Statler</RootNamespace>
     <InterpreterId>{2f641cc7-4230-4b57-baec-c0d6fad826f6}</InterpreterId>
-    <InterpreterVersion>3.4</InterpreterVersion>
-    <NameOfLastUsedPublishProfile>tttr__pre-prod</NameOfLastUsedPublishProfile>
+    <InterpreterVersion>3.4</InterpreterVersion>  
+    <NameOfLastUsedPublishProfile>tttr-pre-prod - Web Deploy</NameOfLastUsedPublishProfile> 
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -195,8 +195,7 @@
     <Content Include="statler_site\templates\play-list-page.html" />
     <Content Include="statler_site\templates\statler-base-page.html" />
     <Content Include="statler_util\templates\util\simple-index.html" />
-    <None Include="tttr__pre-prod.pubxml" />
-    <None Include="tttr.pubxml" />
+    <None Include="tttr-pre-prod - Web Deploy.pubxml" /> 
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
