@@ -5,9 +5,20 @@ from django.contrib.auth.decorators import login_required
 from statler_api.models import PlayList, Play
 
 @login_required(login_url="/admin/login/")
-def getDirectorsReport(request):
+def getSimplePlayIndex(request):
+    """the simple play index is a page with a list of all plays, each with link to a that
+    play's url_title as a relative url. That means that if the page is served at /some-url/
+    the links will go to /some-url/play-url/. This page is served at both /util/report/
+    and /util/approve/"""
+    
     all_plays = get_object_or_404(PlayList, url_title="all")
-    return render(request, 'util/directors-report.html', {'all_plays': all_plays})
+    return render(request, 'util/simple-index.html', {'all_plays': all_plays})
+
+@login_required(login_url="/admin/login/")
+def getDirectorsReport(request, play_id):
+    play = get_object_or_404(Play, url_title=play_id)
+    reviews = play.review_set.order_by('timestamp')
+    return render(request, 'util/directors-report.html', {'play': play, 'reviews': reviews})
 
 @login_required(login_url="/admin/login/")
 def getApprovalPage(request, play_id):

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>statler</Name>
-    <RootNamespace>DjangoWebProject1</RootNamespace>
-    <InterpreterId>{1f23fa28-41f9-4467-b965-541943c4dbe9}</InterpreterId>
-    <InterpreterVersion>3.4</InterpreterVersion>
-    <NameOfLastUsedPublishProfile>tttr-pre-prod - Web Deploy</NameOfLastUsedPublishProfile>
+    <RootNamespace>Statler</RootNamespace>
+    <InterpreterId>{2f641cc7-4230-4b57-baec-c0d6fad826f6}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>  
+    <NameOfLastUsedPublishProfile>tttr-pre-prod - Web Deploy</NameOfLastUsedPublishProfile> 
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="manage.py" />
+    <Compile Include="statler\settings_overrides.py" />
     <Compile Include="statler\settings_overrides.py.default">
       <SubType>Code</SubType>
     </Compile>
@@ -80,7 +81,6 @@
     <Folder Include="static\admin\js\admin\" />
     <Folder Include="statler\" />
     <Folder Include="statler_api\" />
-    <Folder Include="statler_api\fixtures\" />
     <Folder Include="statler_api\migrations\" />
     <Folder Include="statler_api\models\" />
     <Folder Include="statler_api\tests\" />
@@ -94,6 +94,8 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="requirements.txt" />
+    <Content Include="static\5g10b.png" />
+    <Content Include="static\5g10b_PWuyaRK.png" />
     <Content Include="static\admin\css\base.css" />
     <Content Include="static\admin\css\changelists.css" />
     <Content Include="static\admin\css\dashboard.css" />
@@ -157,12 +159,29 @@
     <Content Include="static\admin\js\timeparse.js" />
     <Content Include="static\admin\js\urlify.js" />
     <Content Include="static\bootstrap.css" />
+    <Content Include="static\broken-hearts.png" />
+    <Content Include="static\broken-hearts_6wd9fgX.png" />
+    <Content Include="static\dead-right.png" />
     <Content Include="static\favicon.ico" />
     <Content Include="static\gfu-logo.png" />
     <Content Include="static\header-image.jpg" />
+    <Content Include="static\js.cookie.js" />
+    <Content Include="static\loading.gif" />
+    <Content Include="static\mojo-man.png" />
+    <Content Include="static\nightswim.png" />
+    <Content Include="static\paper-thin.png" />
     <Content Include="static\play-image-placeholder.png" />
+    <Content Include="static\seeing-the-light.png" />
     <Content Include="static\styles.css" />
-    <Content Include="statler_api\fixtures\playlists.json" />
+    <Content Include="static\sun-dried.png" />
+    <Content Include="static\tape.png" />
+    <Content Include="static\tape_3qbFlqM.png" />
+    <Content Include="static\the-chocolate-affair.png" />
+    <Content Include="static\the-chocolate-affair_tcDnmvt.png" />
+    <Content Include="static\the-proposal.png" />
+    <Content Include="static\the-secret-of-mojo-man.png" />
+    <Content Include="static\the-secret-of-mojo-man_xtsjnZE.png" />
+    <Content Include="statler_site\templates\about.html" />
     <Content Include="statler_util\templates\util\directors-report.html" />
     <Content Include="statler_util\templates\util\review-approval-page.html" />
     <Content Include="statler_site\static\bootstrap.css" />
@@ -175,11 +194,12 @@
     <Content Include="statler_site\templates\play-detail-page.html" />
     <Content Include="statler_site\templates\play-list-page.html" />
     <Content Include="statler_site\templates\statler-base-page.html" />
-    <None Include="tttr-pre-prod - Web Deploy.pubxml" />
+    <Content Include="statler_util\templates\util\simple-index.html" />
+    <None Include="tttr-pre-prod - Web Deploy.pubxml" /> 
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
-      <Id>{1f23fa28-41f9-4467-b965-541943c4dbe9}</Id>
+      <Id>{2f641cc7-4230-4b57-baec-c0d6fad826f6}</Id>
       <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
       <Version>3.4</Version>
       <Description>env (Python 3.4)</Description>
